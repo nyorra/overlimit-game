@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button GarageButton;
-    public Button ToCityButton;
-    public Button SettingsButton;
-    public Button CreditsButton;
+    public Button garageButton;
+    public Button toCityButton;
+    public Button settingsButton;
+    public Button creditsButton;
 
 
 }
