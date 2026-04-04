@@ -10,7 +10,7 @@ public class Loading: MonoBehaviour
 {
     public Slider slider;
     public TMP_Text continueText;
-    public string NextScene = "MainMenu";
+    public UIScreen nextScene = UIScreen.MainMenu;
 
     void Start()
     {   
@@ -27,7 +27,7 @@ public class Loading: MonoBehaviour
     IEnumerator LoadSceneAsync()
     {
         // Прогружаем сцену
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(NextScene);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene.ToString());
         asyncLoad.allowSceneActivation = false;
         
         while (asyncLoad.progress < 0.9f)

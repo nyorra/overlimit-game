@@ -7,10 +7,11 @@ public class MainMenu : MonoBehaviour
     public Button garageButton;
     public Button settingsButton;
     public Button creditsButton;
-    public Button backToMainButton;
 
     public RectTransform mainMenuRect;
     public RectTransform garageRect;
+    public RectTransform creditsRect;
+    public RectTransform settingsRect;
 
     void Start()
     {
@@ -18,7 +19,6 @@ public class MainMenu : MonoBehaviour
         garageButton.onClick.AddListener(OpenGarage);
         settingsButton.onClick.AddListener(OpenSettigs);
         creditsButton.onClick.AddListener(OpenCredits);
-        backToMainButton.onClick.AddListener(BackToMenu);
     }
 
     void LoadCity()
@@ -28,25 +28,32 @@ public class MainMenu : MonoBehaviour
 
     void OpenGarage()
     {
-        mainMenuRect.anchoredPosition = new Vector2(-2000, 0);
+        mainMenuRect.anchoredPosition = new Vector2(2000, 0);
         garageRect.anchoredPosition = new Vector2(0, 0);
         Debug.Log("Перешли в гараж");
     }
 
     void OpenSettigs()
     {
+        mainMenuRect.anchoredPosition = new Vector2(2000, 0);
+        settingsRect.anchoredPosition = new Vector2(0, 0);
+        
         Debug.Log("Открыли настройки");
     }
 
     void OpenCredits()
     {
-         Debug.Log("Экран авторов");
+        mainMenuRect.anchoredPosition = new Vector2(2000, 0);
+        creditsRect.anchoredPosition = new Vector2(0, 0);
+        Debug.Log("Экран авторов");
     }
 
-    void BackToMenu()
+    public void BackToMenu()
     {
         mainMenuRect.anchoredPosition = new Vector2(0, 0);
         garageRect.anchoredPosition = new Vector2(2000, 0);
+        creditsRect.anchoredPosition = new Vector2(2000, 0);
+        settingsRect.anchoredPosition = new Vector2(2000, 0);
         Debug.Log("Вернулись в меню");
     }
 }
