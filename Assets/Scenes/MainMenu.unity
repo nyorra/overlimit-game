@@ -855,6 +855,16 @@ MonoBehaviour:
     MaxSpeed: 1
     Torque: 1
     BrakeForce: 1
+  - CarName: Lancer
+    CarPrefab: {fileID: 703920517}
+    MaxSpeed: 1
+    Torque: 1
+    BrakeForce: 1
+  - CarName: Mazda
+    CarPrefab: {fileID: 703920517}
+    MaxSpeed: 1
+    Torque: 1
+    BrakeForce: 1
 --- !u!1 &703920517
 GameObject:
   m_ObjectHideFlags: 0

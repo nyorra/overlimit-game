@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using OVERLIMIT.Logging;
+using OVERLIMIT.Scenes;
+using OVERLIMIT.Loading;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,24 +17,31 @@ public class MainMenu : MonoBehaviour
     public RectTransform creditsRect;
     public RectTransform settingsRect;
 
+    public SceneType nextScene = SceneType.City; 
+
     void Start()
     {
         ToCityButton.onClick.AddListener(LoadCity);
         GarageButton.onClick.AddListener(OpenGarage);
         SettingsButton.onClick.AddListener(OpenSettigs);
         CreditsButton.onClick.AddListener(OpenCredits);
+        OverLogger.LogSuccess("Все элементы прогружены");        
     }
 
-    void LoadCity()
-    {
-        Debug.Log("Прогрузка города");
-    }
+    
+
+  void LoadCity()
+{
+    SceneManager.LoadScene("City"); 
+    OverLogger.LogSuccess("Запуск загрузки города");
+}
+
 
     void OpenGarage()
     {
         mainMenuRect.anchoredPosition = new Vector2(2000, 0);
         garageRect.anchoredPosition = new Vector2(0, 0);
-        Debug.Log("Перешли в гараж");
+        OverLogger.LogSuccess("Перешли в гараж");
     }
 
     void OpenSettigs()
@@ -38,14 +49,14 @@ public class MainMenu : MonoBehaviour
         mainMenuRect.anchoredPosition = new Vector2(2000, 0);
         settingsRect.anchoredPosition = new Vector2(0, 0);
         
-        Debug.Log("Открыли настройки");
+        OverLogger.LogSuccess("Открыли настройки");
     }
 
     void OpenCredits()
     {
         mainMenuRect.anchoredPosition = new Vector2(2000, 0);
         creditsRect.anchoredPosition = new Vector2(0, 0);
-        Debug.Log("Экран авторов");
+        OverLogger.LogSuccess("Экран авторов");
     }
 
     public void BackToMenu()
@@ -55,5 +66,6 @@ public class MainMenu : MonoBehaviour
         creditsRect.anchoredPosition = new Vector2(2000, 0);
         settingsRect.anchoredPosition = new Vector2(2000, 0);
         Debug.Log("Вернулись в меню");
+        OverLogger.LogSuccess("Вернулись в гараж");
     }
 }
