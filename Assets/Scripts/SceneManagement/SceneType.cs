@@ -1,8 +1,10 @@
 // Перечисление сцен преокта
-public enum UIScreen
-{   
-    MainMenu,
-    Garage,
-    Settings,
-    Credits
+namespace OVERLIMIT.Scenes
+{
+    public enum SceneType
+    {   
+        Loading,
+        MainMenu,
+        City
+    }   
 }
