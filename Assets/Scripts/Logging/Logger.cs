@@ -3,7 +3,7 @@ using static OVERLIMIT.Logging.LogConfig;
 
 namespace OVERLIMIT.Logging
 {
-    public class Logger
+    public class OverLogger
     {
         public static void LogSuccess(string MessageSuccess) 
         {
