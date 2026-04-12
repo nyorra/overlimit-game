@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button toCityButton;
-    public Button garageButton;
-    public Button settingsButton;
-    public Button creditsButton;
+    public Button ToCityButton;
+    public Button GarageButton;
+    public Button SettingsButton;
+    public Button CreditsButton;
 
     public RectTransform mainMenuRect;
     public RectTransform garageRect;
@@ -15,10 +15,10 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        toCityButton.onClick.AddListener(LoadCity);
-        garageButton.onClick.AddListener(OpenGarage);
-        settingsButton.onClick.AddListener(OpenSettigs);
-        creditsButton.onClick.AddListener(OpenCredits);
+        ToCityButton.onClick.AddListener(LoadCity);
+        GarageButton.onClick.AddListener(OpenGarage);
+        SettingsButton.onClick.AddListener(OpenSettigs);
+        CreditsButton.onClick.AddListener(OpenCredits);
     }
 
     void LoadCity()
