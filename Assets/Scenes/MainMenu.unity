@@ -851,6 +851,11 @@ MonoBehaviour:
   NextButton: {fileID: 2126810208}
   _currentIndex: 0
   allCars:
+  - CarName: DefaultFirstCar
+    CarPrefab: {fileID: 703920517}
+    MaxSpeed: 1
+    Torque: 1
+    BrakeForce: 1
   - CarName: Porsche
     CarPrefab: {fileID: 703920517}
     MaxSpeed: 1
@@ -862,11 +867,6 @@ MonoBehaviour:
     Torque: 1
     BrakeForce: 1
   - CarName: Mazda
-    CarPrefab: {fileID: 703920517}
-    MaxSpeed: 1
-    Torque: 1
-    BrakeForce: 1
-  - CarName: DefaultFirstCar
     CarPrefab: {fileID: 703920517}
     MaxSpeed: 1
     Torque: 1
@@ -1267,7 +1267,6 @@ MonoBehaviour:
   garageRect: {fileID: 647651773}
   creditsRect: {fileID: 1707809394}
   settingsRect: {fileID: 297687821}
-  nextScene: 2
 --- !u!1 &779891833
 GameObject:
   m_ObjectHideFlags: 0
