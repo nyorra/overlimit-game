@@ -15,27 +15,46 @@ namespace OVERLIMIT.Garage
 
         [Header("Data")]
         public int _currentIndex;
+        // список машин
         public List<CarModels> allCars;
         
         private void Start()
         {
+            // Проверка всех ссылок
+            Object[] GarageElements = { SelectedCarText, PrevButton, NextButton };
+            foreach (var element in GarageElements)
+            {
+                if (element == null)
+                {
+                    OverLogger.LogError("Garage UI references are missing!", this);
+                    return;
+                }
+            }
+
+            // Список машин не должен быть пустым
+            if (allCars == null || allCars.Count == 0)
+            {
+                OverLogger.LogWarning("Car list is empty! Add cars to the list in Inspector.", this);
+                return;
+            }
+
             PrevButton.onClick.AddListener(SwitchPrev);
             NextButton.onClick.AddListener(SwitchNext);
 
             SelectCar();
 
-            OverLogger.LogSuccess("Garage start прогружен");
+            OverLogger.LogSuccess("Garage system initialized.", this);
         }
 
         public void SwitchPrev()
         {
-            _currentIndex = (_currentIndex + 1) % allCars.Count;
+            _currentIndex = (_currentIndex - 1 + allCars.Count) % allCars.Count;
             SelectCar();
         }
 
         public void SwitchNext()
         {
-            _currentIndex = (_currentIndex - 1 + allCars.Count) % allCars.Count;
+            _currentIndex = (_currentIndex + 1) % allCars.Count;
             SelectCar();
         }
 
@@ -43,10 +62,16 @@ namespace OVERLIMIT.Garage
         // прогрузка уже ее в системе, вместо 0 индекса
         public void SelectCar()
         {
-            if (allCars == null || allCars.Count == 0) return; 
             CarModels currentCar = allCars[_currentIndex];
+            
+            if (currentCar == null)
+            {
+                OverLogger.LogError($"Car at index {_currentIndex} is null!", this);
+                return;
+            }
+
             SelectedCarText.text = currentCar.CarName;
-            OverLogger.LogSuccess($"Выбрана машина: {currentCar.CarName}");
+            OverLogger.LogSuccess($"UI: Car selected -> {currentCar.CarName}", this);
         }
 
     }   
