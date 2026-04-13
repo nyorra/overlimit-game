@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Reflection;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
@@ -49,7 +50,7 @@ namespace OVERLIMIT.Logging
             Debug.LogWarning(Format(LogConfig.PrefixWarning, message, LogConfig.ColorWarning), context);
         }
 
-        // Выводит критическую ошибку. Работает во всех типах билдов.
+        // Выводит критическую ОШИБКУ. Работает во всех типах билдов.
         [UnityEngine.HideInCallstack]
         public static void LogError(string message, Object context = null)
         {
@@ -57,31 +58,37 @@ namespace OVERLIMIT.Logging
             Debug.LogError(Format(LogConfig.PrefixError, message, LogConfig.ColorError), context);
         }
 
-        // Выводит системное исключение, сохраняя полную структуру ошибки и StackTrace
+        // Выводит системное ИСКЛЮЧЕНИЕ, сохраняя полную структуру ошибки
         [UnityEngine.HideInCallstack]
         public static void LogError(Exception ex, Object context = null)
         {
             if (!IsAllowed(LogLevel.Error) || ex == null) return;
-            
-            // Стилизованный заголовок ошибки для визуального единства
+
             Debug.LogError(Format(LogConfig.PrefixError, $"Exception: {ex.Message}", LogConfig.ColorError), context);
-            // Системный вызов для сохранения кликабельного пути к ошибке
             Debug.LogException(ex, context);
+        }
+
+        [Conditional("UNITY_EDITOR")]
+        public static void ClearConsole()
+        {
+            // Находит внутренний метод Unity для очистки консоли и вызывает его
+            var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+            var type = assembly.GetType("UnityEditor.LogEntries");
+            var method = type.GetMethod("Clear");
+            method.Invoke(new object(), null);
         }
 
         // Форматирует строку: добавляет цвета (в Editor) и префиксы, проверяет на null
         private static string Format(string prefix, string message, string color)
         {
-            message ??= "NULL"; 
+            message ??= "NULL";
 
 #if UNITY_EDITOR
-            // В редакторе всегда используем Rich Text для наглядности
             return $"<color={color}>{prefix} {message}</color>";
 #else
-            // В билде красим только если это явно разрешено (цвета могут портить внешние логи)
-            if (Settings.EnableColorsInBuild)
-                return $"<color={color}>{prefix} {message}</color>";
-            return $"{prefix} {message}";
+                if (Settings.EnableColorsInBuild)
+                    return $"<color={color}>{prefix} {message}</color>";
+                return $"{prefix} {message}";
 #endif
         }
     }
