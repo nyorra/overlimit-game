@@ -8,33 +8,32 @@ namespace OVERLIMIT.Garage
 {
     public class Garage : MonoBehaviour
     {
-        [Header("UI")]
+        [Header("UI элементы")]
         public TMP_Text SelectedCarText;
         public Button PrevButton;
         public Button NextButton;
 
-        [Header("Data")]
+        [Header("Данные автомобилей")]
         public int _currentIndex;
-        // список машин
         public List<CarModels> allCars;
-        
+
         private void Start()
         {
-            // Проверка всех ссылок
+            // Проверка всех ссылок на UI
             Object[] GarageElements = { SelectedCarText, PrevButton, NextButton };
             foreach (var element in GarageElements)
             {
                 if (element == null)
                 {
-                    OverLogger.LogError("Garage UI references are missing!", this);
+                    OverLogger.LogError("Критическая ошибка: В инспекторе Garage не назначены ссылки на UI!", this);
                     return;
                 }
             }
 
-            // Список машин не должен быть пустым
+            // Проверка списка машин
             if (allCars == null || allCars.Count == 0)
             {
-                OverLogger.LogWarning("Car list is empty! Add cars to the list in Inspector.", this);
+                OverLogger.LogWarning("Предупреждение: Список машин пуст! Добавьте машины в инспекторе.", this);
                 return;
             }
 
@@ -43,36 +42,39 @@ namespace OVERLIMIT.Garage
 
             SelectCar();
 
-            OverLogger.LogSuccess("Garage system initialized.", this);
+            OverLogger.LogSuccess("Система Гаража успешно инициализирована.", this);
         }
 
         public void SwitchPrev()
         {
+            // Листаем назад (индекс вниз)
             _currentIndex = (_currentIndex - 1 + allCars.Count) % allCars.Count;
             SelectCar();
         }
 
         public void SwitchNext()
         {
+            // Листаем вперед (индекс вверх)
             _currentIndex = (_currentIndex + 1) % allCars.Count;
             SelectCar();
         }
 
-        // на 0 индексе стоит дефолт первая тачка, она прогружается сразу. Потом отслеживание выбранной машины и
-        // прогрузка уже ее в системе, вместо 0 индекса
         public void SelectCar()
         {
+            if (allCars == null || allCars.Count == 0) return;
+
             CarModels currentCar = allCars[_currentIndex];
-            
+
             if (currentCar == null)
             {
-                OverLogger.LogError($"Car at index {_currentIndex} is null!", this);
+                OverLogger.LogError($"Ошибка: Машина под индексом {_currentIndex} не найдена (null)!", this);
                 return;
             }
 
             SelectedCarText.text = currentCar.CarName;
-            OverLogger.LogSuccess($"UI: Car selected -> {currentCar.CarName}", this);
-        }
 
-    }   
+            // Логируем выбор конкретной модели
+            OverLogger.LogSuccess($"Гараж: Выбран автомобиль [{currentCar.CarName}].", this);
+        }
+    }
 }
