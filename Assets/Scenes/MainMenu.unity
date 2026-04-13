@@ -1263,10 +1263,10 @@ MonoBehaviour:
   GarageButton: {fileID: 305397230}
   SettingsButton: {fileID: 2045960557}
   CreditsButton: {fileID: 1046648492}
-  mainMenuRect: {fileID: 147822208}
-  garageRect: {fileID: 647651773}
-  creditsRect: {fileID: 1707809394}
-  settingsRect: {fileID: 297687821}
+  MainScreenPanel: {fileID: 147822208}
+  GarageScreenPanel: {fileID: 647651773}
+  SettingsScreenPanel: {fileID: 297687821}
+  CreditsScreenPanel: {fileID: 1707809394}
 --- !u!1 &779891833
 GameObject:
   m_ObjectHideFlags: 0

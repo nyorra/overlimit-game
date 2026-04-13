@@ -14,9 +14,8 @@ public class MainMenu : MonoBehaviour
     [Header("Panels")]
     public RectTransform MainScreenPanel;
     public RectTransform GarageScreenPanel;
-    public RectTransform CreditsScreenPanel;
     public RectTransform SettingsScreenPanel;
-
+    public RectTransform CreditsScreenPanel;
 
     void Start()
     {
