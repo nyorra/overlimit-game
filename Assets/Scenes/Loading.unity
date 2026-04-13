@@ -607,8 +607,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1325416373}
-  - {fileID: 1862862552}
   - {fileID: 1996807573}
+  - {fileID: 1862862552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -628,9 +628,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311766f12fb886d418e46ea29c8acaee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Loading
-  slider: {fileID: 1996807574}
-  continueText: {fileID: 1862862553}
-  NextScene: MainMenu
+  LoadingProgressBar: {fileID: 1996807574}
+  ContinueHintText: {fileID: 1862862553}
+  nextScene: 1
 --- !u!1 &1166038705
 GameObject:
   m_ObjectHideFlags: 0

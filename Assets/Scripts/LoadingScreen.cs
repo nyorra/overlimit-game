@@ -13,14 +13,14 @@ namespace OVERLIMIT.Loading
     {
         public Slider LoadingProgressBar;
         public TMP_Text ContinueHintText;
-        public SceneType nextScene = SceneType.MainMenu;
+        public SceneType nextScene;
 
         void Start()
         {
-            // проверка на подключение slider и continueText
+            // Проверка на подключение UI элементов
             if (LoadingProgressBar == null || ContinueHintText == null)
             {
-                OverLogger.LogError("UI references are missing in LoadingScreen!", this);
+                OverLogger.LogError("Ошибка: В инспекторе LoadingScreen не назначены ссылки на UI!", this);
                 return;
             }
 
@@ -28,26 +28,27 @@ namespace OVERLIMIT.Loading
             LoadingProgressBar.gameObject.SetActive(true);
             LoadingProgressBar.value = 0f;
 
-            StartCoroutine(LoadProcess());
+            // Запускаем универсальную корутину загрузки
+            StartCoroutine(LoadSceneRoutine());
 
-            // Здесь используем context (this), чтобы при клике на лог сразу найти этот объект на сцене
-            OverLogger.LogSuccess("Loading process initialized.", this);
+            OverLogger.LogSuccess($"Процесс загрузки инициирован. Целевая сцена: {nextScene}", this);
         }
 
-        IEnumerator LoadProcess()
+        IEnumerator LoadSceneRoutine()
         {
-            // Используем название сцены из переменной, чтобы избежать опечаток в строках
             string sceneName = nextScene.ToString();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
             if (asyncLoad == null)
             {
-                OverLogger.LogError($"Failed to start loading scene: {sceneName}");
+                OverLogger.LogError($"Критическая ошибка: Не удалось начать асинхронную загрузку {sceneName}!");
                 yield break;
             }
 
+            // Блокируем автоматический переход
             asyncLoad.allowSceneActivation = false;
 
+            // Обновление прогресс-бара
             while (asyncLoad.progress < 0.9f)
             {
                 LoadingProgressBar.value = Mathf.Clamp01(asyncLoad.progress / 0.9f);
@@ -58,18 +59,16 @@ namespace OVERLIMIT.Loading
             LoadingProgressBar.gameObject.SetActive(false);
             ContinueHintText.gameObject.SetActive(true);
 
-            // Лог уровня Success для подтверждения, что ресурсы в памяти и мы ждем только игрока
-            OverLogger.LogSuccess($"Scene '{sceneName}' pre-loaded. Waiting for user input...");
+            OverLogger.LogSuccess($"Сцена [{sceneName}] успешно загружена в память. Ожидаю ввод игрока...");
 
+            // Ожидание клика или клавиши
             yield return new WaitUntil(() =>
                 (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
                 (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame));
 
-            // Лог перед активацией: если игра зависнет в этот момент, ты будешь знать, 
-            // что проблема именно в инициализации новой сцены (Start методы новых скриптов)
-            OverLogger.LogSuccess($"Activating scene: {sceneName}");
+            OverLogger.LogSuccess($"Активация сцены [{sceneName}]. Переход выполнен успешно!", this);
+
             asyncLoad.allowSceneActivation = true;
-            OverLogger.ClearConsole();
         }
     }
 }
