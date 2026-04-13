@@ -14,30 +14,34 @@ namespace OVERLIMIT.Garage
         public Button NextButton;
 
         [Header("Data")]
+        public int _currentIndex;
         public List<CarModels> allCars;
-        private int _currentIndex = 0;
-
+        
         private void Start()
         {
             PrevButton.onClick.AddListener(SwitchPrev);
             NextButton.onClick.AddListener(SwitchNext);
 
-            UpdateUI();
+            SelectCar();
+
+            OverLogger.LogSuccess("Garage start прогружен");
         }
 
         public void SwitchPrev()
         {
             _currentIndex = (_currentIndex + 1) % allCars.Count;
-            UpdateUI();
+            SelectCar();
         }
 
         public void SwitchNext()
         {
             _currentIndex = (_currentIndex - 1 + allCars.Count) % allCars.Count;
-            UpdateUI();
+            SelectCar();
         }
 
-        public void UpdateUI()
+        // на 0 индексе стоит дефолт первая тачка, она прогружается сразу. Потом отслеживание выбранной машины и
+        // прогрузка уже ее в системе, вместо 0 индекса
+        public void SelectCar()
         {
             if (allCars == null || allCars.Count == 0) return; 
             CarModels currentCar = allCars[_currentIndex];

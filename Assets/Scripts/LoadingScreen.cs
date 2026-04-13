@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
 using OVERLIMIT.Scenes;
+using OVERLIMIT.Logging;
 
 namespace OVERLIMIT.Loading
 {
@@ -25,6 +26,7 @@ namespace OVERLIMIT.Loading
 
             // запуск генератора
             StartCoroutine(LoadProcess());
+            OverLogger.LogSuccess("LoadingScreen start прогружен");
         }
 
         // Генератор, если оформить while в Start() игре пиздец. Unity пытается сделать все в 1 кадре,

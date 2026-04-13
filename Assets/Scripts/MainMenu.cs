@@ -25,16 +25,16 @@ public class MainMenu : MonoBehaviour
         GarageButton.onClick.AddListener(OpenGarage);
         SettingsButton.onClick.AddListener(OpenSettigs);
         CreditsButton.onClick.AddListener(OpenCredits);
-        OverLogger.LogSuccess("Все элементы прогружены");        
+        OverLogger.LogSuccess("MainMenu start прогружен");        
     }
 
     
 
-  void LoadCity()
-{
-    SceneManager.LoadScene("City"); 
-    OverLogger.LogSuccess("Запуск загрузки города");
-}
+    void LoadCity()
+    {
+        SceneManager.LoadScene("City"); 
+        OverLogger.LogSuccess("Запуск загрузки города");
+    }
 
 
     void OpenGarage()
@@ -64,8 +64,7 @@ public class MainMenu : MonoBehaviour
         mainMenuRect.anchoredPosition = new Vector2(0, 0);
         garageRect.anchoredPosition = new Vector2(2000, 0);
         creditsRect.anchoredPosition = new Vector2(2000, 0);
-        settingsRect.anchoredPosition = new Vector2(2000, 0);
-        Debug.Log("Вернулись в меню");
+        settingsRect.anchoredPosition = new Vector2(2000, 0);   
         OverLogger.LogSuccess("Вернулись в гараж");
     }
 }
