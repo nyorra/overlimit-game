@@ -12,6 +12,6 @@ namespace OVERLIMIT.Garage
         [Header("Physics")]
         public float MaxSpeed;
         public float Torque;
-        public float BrakeForce;       
+        public float BrakeForce;
     }
 }
