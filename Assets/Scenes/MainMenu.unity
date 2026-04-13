@@ -1259,6 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca8b1cef64aa6945af0ca8bd81d86db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  nextScene: 2
   ToCityButton: {fileID: 1777365106}
   GarageButton: {fileID: 305397230}
   SettingsButton: {fileID: 2045960557}

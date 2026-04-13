@@ -2,9 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using OVERLIMIT.Logging;
+using System.Collections;
+using TMPro;
+using UnityEngine.InputSystem;
+using OVERLIMIT.Scenes;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Next Scene")]
+    public SceneType nextScene;
+
     [Header("Buttons")]
     public Button ToCityButton;
     public Button GarageButton;
@@ -19,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        // Проверяем ссылки
+        // Проверка ссылок на элементы UI
         Object[] MainMenuElements = {
             ToCityButton, GarageButton, SettingsButton, CreditsButton,
             MainScreenPanel, GarageScreenPanel, CreditsScreenPanel, SettingsScreenPanel
@@ -29,8 +36,7 @@ public class MainMenu : MonoBehaviour
         {
             if (reference == null)
             {
-                // Если хоть одна ссылка пуста — лог покажет, на каком объекте проблема
-                OverLogger.LogError("Missing UI reference in MainMenu! Check the Inspector.", this);
+                OverLogger.LogError("Ошибка: В инспекторе MainMenu не назначены ссылки на UI!", this);
                 return;
             }
         }
@@ -40,13 +46,35 @@ public class MainMenu : MonoBehaviour
         SettingsButton.onClick.AddListener(OpenSettings);
         CreditsButton.onClick.AddListener(OpenCredits);
 
-        OverLogger.LogSuccess("MainMenu initialized and listeners attached.", this);
+        OverLogger.LogSuccess("MainMenu: Все кнопки и панели успешно инициализированы.", this);
     }
 
     void LoadCity()
     {
-        OverLogger.LogSuccess("City loading initiated...");
-        SceneManager.LoadScene("City");
+        StartCoroutine(LoadCityRoutine());
+        // Логируем только факт запуска процесса
+        OverLogger.LogSuccess($"Запущен процесс асинхронной загрузки сцены: {nextScene}", this);
+    }
+
+    IEnumerator LoadCityRoutine()
+    {
+        string sceneName = nextScene.ToString();
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        if (asyncLoad == null)
+        {
+            OverLogger.LogError($"Критическая ошибка: Не удалось начать загрузку сцены {sceneName}!");
+            yield break;
+        }
+
+        OverLogger.LogSuccess($"Сцена {sceneName} загружена в память. Ожидание нажатия для перехода...", this);
+
+        // Ждем ввода от игрока
+        yield return new WaitUntil(() =>
+                (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
+                (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame));
+
+        OverLogger.LogSuccess($"Активация сцены {sceneName}. Переход...", this);
     }
 
     void OpenGarage() => SwitchPanel(GarageScreenPanel, "Garage");
@@ -55,30 +83,26 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMenu()
     {
-        // Просто переключаемся обратно на главное меню
         SwitchPanel(MainScreenPanel, "Main Menu");
 
-        // Сбрасываем остальные панели в сторону
         GarageScreenPanel.anchoredPosition = new Vector2(2000, 0);
         CreditsScreenPanel.anchoredPosition = new Vector2(2000, 0);
         SettingsScreenPanel.anchoredPosition = new Vector2(2000, 0);
+
+        OverLogger.LogSuccess("Возврат в главное меню выполнен.", this);
     }
 
     private void SwitchPanel(RectTransform targetPanel, string panelName)
     {
-        // тк метод можно вызват
         if (targetPanel == null)
         {
-            OverLogger.LogWarning($"UI: Attempted to open a null panel: {panelName}!");
+            OverLogger.LogWarning($"Предупреждение: Попытка открыть отсутствующую панель [{panelName}]!");
             return;
         }
 
-        // Сначала "прячем" всё за экран (универсальный подход)
         MainScreenPanel.anchoredPosition = new Vector2(2000, 0);
-
-        // Выводим нужную панель в центр
         targetPanel.anchoredPosition = Vector2.zero;
 
-        OverLogger.LogSuccess($"UI: {panelName} panel opened.");
+        OverLogger.LogSuccess($"Панель [{panelName}] успешно открыта.");
     }
 }
