@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace OVERLIMIT.Garage
 {
@@ -13,5 +14,8 @@ namespace OVERLIMIT.Garage
         public float MaxSpeed;
         public float Torque;
         public float BrakeForce;
+
+        public static List<CarModels> AllCarsRegistry; // Список всех префабов
+        public static string SelectedCarName;
     }
 }

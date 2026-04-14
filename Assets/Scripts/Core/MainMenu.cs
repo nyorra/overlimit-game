@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using OVERLIMIT.Logging;
 using System.Collections;
-using UnityEngine.InputSystem;
 using OVERLIMIT.Scenes;
+using OVERLIMIT.Garage;
 
 public class MainMenu : MonoBehaviour
 {
@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
         {
             if (reference == null)
             {
-                OverLogger.LogError("Ошибка: В инспекторе MainMenu не назначены ссылки на UI!", this);
+                OverLogger.LogError($"Ошибка: В инспекторе MainMenu не назначены ссылки на {reference} UI!", this);
                 return;
             }
         }
@@ -66,15 +66,17 @@ public class MainMenu : MonoBehaviour
             yield break;
         }
 
-        OverLogger.LogSuccess($"Сцена {sceneName} загружена в память. Ожидание нажатия для перехода...", this);
+        // while (!asyncLoad.isDone)
+        // {
+        //     yield return null;
+        // }
 
-        // Ждем ввода от игрока
-        yield return new WaitUntil(() =>
-                (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
-                (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame));
+        OverLogger.LogSuccess($"Сцена [{sceneName}] успешно загружена. Объект [{CarModels.SelectedCarName}] готов к спавну.", this);
 
-        OverLogger.LogSuccess($"Активация сцены {sceneName}. Переход...", this);
+        // SpawnPlayerCar();
     }
+
+
 
     void OpenGarage() => SwitchPanel(GarageScreenPanel, "Garage");
     void OpenSettings() => SwitchPanel(SettingsScreenPanel, "Settings");

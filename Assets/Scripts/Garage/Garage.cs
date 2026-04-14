@@ -25,10 +25,12 @@ namespace OVERLIMIT.Garage
             {
                 if (element == null)
                 {
-                    OverLogger.LogError("Критическая ошибка: В инспекторе Garage не назначены ссылки на UI!", this);
+                    OverLogger.LogError($"Критическая ошибка: В инспекторе Garage не назначены ссылка на {element} UI!", this);
                     return;
                 }
             }
+
+            CarModels.AllCarsRegistry = allCars;
 
             // Проверка списка машин
             if (allCars == null || allCars.Count == 0)
@@ -72,6 +74,7 @@ namespace OVERLIMIT.Garage
             }
 
             SelectedCarText.text = currentCar.CarName;
+            CarModels.SelectedCarName = currentCar.CarName;
 
             // Логируем выбор конкретной модели
             OverLogger.LogSuccess($"Гараж: Выбран автомобиль [{currentCar.CarName}].", this);
