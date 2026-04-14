@@ -1,20 +1,59 @@
-# OVERLIMIT
+# OVERLIMIT 🏎️
 
 Аркадная гонка, вдохновленная золотой эрой стритрейтинга и эстетикой начала 2000-х.
 
 ## 🛠 Технологический стек
 
 *   **Engine:** [Unity](https://unity.com)
-*   **Language:** C#
+*   **Language:** C# (Standard: C# 9.0+)
 *   **Version Control:** Git + Git LFS
-*   **Graphics & Assets:** Blender 
-*   **Input System:** Unity New Input System (поддержка геймпадов и клавиатур)
+*   **Graphics & Assets:** Blender
+*   **Input System:** Unity New Input System (геймпады, клавиатуры)
 
+---
+
+## 📏 Правила разработки (Workflow)
+
+Для поддержания чистоты репозитория и читаемости кода в проекте установлены следующие стандарты:
+
+### 1. Стандарт коммитов
+Все сообщения коммитов пишутся в формате: `<prefix>: <description>` (Camel Case или Lower Case для описания).
+
+**Основные префиксы:**
+*   `feat`: Новый функционал (например, `feat: add nitro mechanics`)
+*   `fix`: Исправление ошибок (`fix: garage scene loading bug`)
+*   `refactor`: Изменение структуры кода или нейминга без изменения логики (`refactor: clean logging naming`)
+*   `docs`: Обновление документации или README (`docs: update workflow rules`)
+*   `chore`: Рутинные задачи, конфиги, обновление `.gitignore`
+
+### 2. Организация кода и нейминг
+*   **Single Source of Truth:** Все текстовые сообщения, логи и уведомления выносятся в статические классы (например, `Messages.cs`) для централизованного управления.
+*   **Namespaces:** Обязательное использование пространств имен для модулей (например, `namespace OverLogging`).
+*   **DRY (Don't Repeat Yourself):** Избегаем избыточности в названиях. Внутри папки `Logging` файл называется `Messages.cs`, а не `LogMessages.cs`.
+
+---
+
+## 📂 Структура проекта
+
+*   **Scripts/Core/** — Глобальная логика управления:
+    *   `LoadingScreen.cs` — Система загрузки сцен.
+    *   `MainMenu.cs` — Логика главного меню.
+    *   `SceneType.cs` — Определение типов игровых зон (Enum).
+*   **Scripts/Logging/** — Инфраструктура логирования (`OverLogger`):
+    *   `Messages.cs` — Единое хранилище всех строк и уведомлений.
+    *   `Levels.cs`, `Config.cs`, `Settings.cs` — Настройки уровней и форматов вывода.
+*   **Scripts/Garage/ & City/** — Игровая логика конкретных локаций:
+    *   `Garage.cs`, `CarModels.cs` — Управление парком машин и гаражом.
+    *   `City/` — Модули открытого мира.
+*   **Settings/** — Конфигурации Unity (Input System, пресеты).
+
+
+---
 
 ## 👤 Авторство и права
 
 **Автор:** Влад «Nyorra»  
-**Telegram:** @nyorra   
+**Telegram:** [@nyorra](https://t.me)  
 **Дата создания:** 31 марта 2026 г.
 
 ### ⚖️ Лицензия / Legal Info
@@ -30,4 +69,4 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com
+   git clone https://github.com/nyorra/Overlimit-Game.git
