@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using OVERLIMIT.Logging;
 using System.Collections;
-using TMPro;
 using UnityEngine.InputSystem;
 using OVERLIMIT.Scenes;
 
