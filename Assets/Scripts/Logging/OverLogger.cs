@@ -7,6 +7,10 @@ using Object = UnityEngine.Object;
 
 namespace OVERLIMIT.Logging
 {
+    /// <summary>
+    /// Глобальная система логирования. 
+    /// Поддерживает фильтрацию по уровням, цветовое форматирование и контекстные ссылки на объекты.
+    /// </summary>
     public static class OverLogger
     {
         // Кэш настроек

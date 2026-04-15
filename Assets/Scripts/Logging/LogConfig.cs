@@ -3,6 +3,7 @@
 namespace OVERLIMIT.Logging
 {
     public static class LogConfig
+    // Задаем префиксы и цвета для логов
     {
         public const string ColorSuccess = "#77ffaa";
         public const string ColorWarning = "#ffff00";
