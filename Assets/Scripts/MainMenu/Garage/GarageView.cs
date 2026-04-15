@@ -6,7 +6,7 @@ namespace OVERLIMIT.Garage
 {
     public class GarageView : MonoBehaviour
     {
-        public TMP_Text carNameText;
+        public TMP_Text SelectedCarText;
 
         private void OnEnable()
         {
@@ -24,7 +24,7 @@ namespace OVERLIMIT.Garage
         {
             if (car == null) return;
 
-            carNameText.text = car.CarName;
+            SelectedCarText.text = car.CarName;
             OverLogger.LogSuccess($"Интерфейс обновлен для: {car.CarName}", this);
         }
     }
