@@ -843,34 +843,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 647651772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f50a910d4c75948a8654fb6c35fc05, type: 3}
+  m_Script: {fileID: 11500000, guid: 179bbbeb26009494d98da87d3e391f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Garage.Garage
-  SelectedCarText: {fileID: 320292968}
-  PrevButton: {fileID: 1663681555}
-  NextButton: {fileID: 2126810208}
-  _currentIndex: 0
-  allCars:
-  - CarName: DefaultFirstCar
-    CarPrefab: {fileID: 703920517}
-    MaxSpeed: 1
-    Torque: 1
-    BrakeForce: 1
-  - CarName: Porsche
-    CarPrefab: {fileID: 703920517}
-    MaxSpeed: 1
-    Torque: 1
-    BrakeForce: 1
-  - CarName: Lancer
-    CarPrefab: {fileID: 703920517}
-    MaxSpeed: 1
-    Torque: 1
-    BrakeForce: 1
-  - CarName: Mazda
-    CarPrefab: {fileID: 703920517}
-    MaxSpeed: 1
-    Torque: 1
-    BrakeForce: 1
+  carNameText: {fileID: 320292968}
 --- !u!1 &703920517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,9 +1129,6 @@ GameObject:
   - component: {fileID: 773217937}
   - component: {fileID: 773217936}
   - component: {fileID: 773217935}
-  - component: {fileID: 773217941}
-  - component: {fileID: 773217940}
-  - component: {fileID: 773217939}
   m_Layer: 5
   m_Name: UI_MainMenu
   m_TagString: Untagged
@@ -1221,7 +1194,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1249,57 +1222,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &773217939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773217934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62b30b9303f42f7469af8d759d53ed21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Menu.MainMenuNavigation
-  mainScreenPanel: {fileID: 147822208}
-  garageScreenPanel: {fileID: 647651773}
-  settingsScreenPanel: {fileID: 297687821}
-  creditsScreenPanel: {fileID: 1707809394}
---- !u!114 &773217940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773217934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f64f70ffb5d43348bc528563263f332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Menu.MainMenuLoader
---- !u!114 &773217941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773217934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5f3f06a6350904fbc40843a9b4199e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Menu.MainMenuController
-  nextScene: 0
-  navigation: {fileID: 773217939}
-  loader: {fileID: 773217940}
-  toCityButton: {fileID: 1777365106}
-  garageButton: {fileID: 305397230}
-  settingsButton: {fileID: 2045960557}
-  creditsButton: {fileID: 1046648492}
-  backButtons:
-  - {fileID: 1930789682}
-  - {fileID: 1253108621}
-  - {fileID: 703920519}
 --- !u!1 &779891833
 GameObject:
   m_ObjectHideFlags: 0

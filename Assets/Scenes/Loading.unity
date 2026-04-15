@@ -626,11 +626,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 947482703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0fb3c98de7a384faa161be4eb9452c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ea9bc65de300e44d8e35bcf4e95ed83, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Loading.LoadingUI
-  loadingProgressBar: {fileID: 1996807574}
-  continueHintText: {fileID: 1862862553}
+  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Loading.LoadingController
+  nextScene: 1
+  ui: {fileID: 947482709}
 --- !u!114 &947482709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,11 +640,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 947482703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324fd702e1b7d484b87c3b161d1b7839, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e0fb3c98de7a384faa161be4eb9452c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Loading.LoadingScreen
-  nextScene: 1
-  ui: {fileID: 947482708}
+  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Loading.LoadingUI
+  loadingProgressBar: {fileID: 1996807574}
+  continueHintText: {fileID: 1862862553}
 --- !u!1 &1166038705
 GameObject:
   m_ObjectHideFlags: 0
