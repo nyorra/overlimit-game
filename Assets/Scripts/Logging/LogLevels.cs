@@ -1,6 +1,6 @@
 namespace OVERLIMIT.Logging
 {
-    public enum LogLevel
+    public enum LogLevels
     {
         // В LogSettings MinimumLevel = LogLevel.НАШ_УРОВЕНЬ; Для разного отображения разные уровни
         None = 0, // дефолт значение, гарант что enum не ляжет с багом
