@@ -75,17 +75,17 @@ namespace OVERLIMIT.Logging
         private static string Format(string prefix, string message, string color, Object context)
         {
             message ??= "NULL";
-            string contextName = context != null ? $"[{context.name}] " : "";
-            string finalMsg = $"{prefix} {contextName}{message}";
+            string finalMsg = $"{prefix} {message}";
 
 #if UNITY_EDITOR
             return $"<color={color}>{finalMsg}</color>";
 #else
-            if (Settings.EnableColorsInBuild)
-                return $"<color={color}>{finalMsg}</color>";
-            return finalMsg;
+    if (Settings.EnableColorsInBuild)
+        return $"<color={color}>{finalMsg}</color>";
+    return finalMsg;
 #endif
         }
+
 
         [Conditional("UNITY_EDITOR")]
         public static void ClearConsole()
