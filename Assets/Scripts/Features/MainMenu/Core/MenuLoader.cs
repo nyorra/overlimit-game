@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using OVERLIMIT.Scenes;
 using OVERLIMIT.Logging;
+using OVERLIMIT.Messages;
 
 namespace OVERLIMIT.Menu
 {
@@ -26,19 +27,19 @@ namespace OVERLIMIT.Menu
             _isLoading = true;
             string sceneName = scene.ToString();
 
-            OverLogger.LogSuccess($"Меню: начинаем загрузку сцены {sceneName}", this);
+            OverLogger.LogSuccess(AppMessages.MainMenu.LoadStarted(sceneName), this);
 
             // Запускаем асинхронную загрузку Unity
             AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
 
             if (op == null)
             {
-                OverLogger.LogError($"Критическая ошибка: Забыл добавить сцену '{sceneName}' в Build Settings!", this);
+                OverLogger.LogError(AppMessages.MainMenu.MainNotFound(sceneName), this);
                 _isLoading = false;
                 yield break;
             }
 
-            // Ждем, пока сцена полностью прогрузится (в отличие от LoadingProcessor, здесь идем до конца)
+            // Ждем, пока сцена полностью прогрузится - в отличие от LoadingProcessor идем до конца
             while (!op.isDone)
             {
                 yield return null;

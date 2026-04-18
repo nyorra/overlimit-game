@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using OVERLIMIT.Scenes;
 using OVERLIMIT.Logging;
+using OVERLIMIT.Validate;
+using OVERLIMIT.Messages;
+using System;
+
 
 namespace OVERLIMIT.Menu
 {
@@ -27,8 +31,22 @@ namespace OVERLIMIT.Menu
 
         void Start()
         {
-            // Проверка на установку всех компонентов
-            if (!ValidateComponents()) return;
+            // Валидируем модуль MainMenu: контроллеры, кнопки и панели навигации
+            if (this.BeginValidation()
+                    .Require(navigation, nameof(navigation))
+                    .Require(loader, nameof(loader))
+                    .Require(toCityButton, nameof(toCityButton))
+                    .Require(garageButton, nameof(garageButton))
+                    .Require(settingsButton, nameof(settingsButton))
+                    .Require(creditsButton, nameof(creditsButton))
+                    .RequireList(backButtons, nameof(backButtons))
+                    // Проверяем панели
+                    .Require(navigation?.mainScreenPanel, $"{nameof(navigation)}.{nameof(navigation.mainScreenPanel)}")
+                    .Require(navigation?.garageScreenPanel, $"{nameof(navigation)}.{nameof(navigation.garageScreenPanel)}")
+                    .Require(navigation?.settingsScreenPanel, $"{nameof(navigation)}.{nameof(navigation.settingsScreenPanel)}")
+                    .Require(navigation?.creditsScreenPanel, $"{nameof(navigation)}.{nameof(navigation.creditsScreenPanel)}")
+                    .LogAndCheck())
+                return;
 
             // Основные кнопки
             toCityButton.onClick.AddListener(() => loader.LoadScene(cityScene));
@@ -36,30 +54,14 @@ namespace OVERLIMIT.Menu
             settingsButton.onClick.AddListener(() => navigation.ShowPanel(navigation.settingsScreenPanel));
             creditsButton.onClick.AddListener(() => navigation.ShowPanel(navigation.creditsScreenPanel));
 
+
             // Кнопки "Назад"
-            for (int i = 0; i < backButtons.Length; i++)
+            foreach (var btn in backButtons)
             {
-                if (backButtons[i] != null)
-                {
-                    backButtons[i].onClick.AddListener(navigation.ShowMain);
-                }
-                else
-                {
-                    // Пишем индекс, чтобы в инспекторе было легко найти пустую ячейку
-                    OverLogger.LogWarning($"Кнопка 'Назад' под номером [{i}] не назначена в списке!", this);
-                }
+                btn.onClick.AddListener(navigation.ShowMain);
             }
 
-            OverLogger.LogSuccess("Меню настроено.", this);
-        }
-
-        private bool ValidateComponents()
-        {
-            // Короткая проверка: если мы забыли что-то притащить в инспектор, логгер об этом скажет
-            if (navigation != null && loader != null) return true;
-
-            OverLogger.LogError("Забыл привязать Navigation или Loader в инспекторе!", this);
-            return false;
+            OverLogger.LogSuccess(AppMessages.MainMenu.MenuReady, this);
         }
     }
 }

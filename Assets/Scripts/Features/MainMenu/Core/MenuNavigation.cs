@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using OVERLIMIT.Logging;
+using OVERLIMIT.Messages;
 
 namespace OVERLIMIT.Menu
 {
@@ -20,7 +21,8 @@ namespace OVERLIMIT.Menu
 
         void Awake()
         {
-            // Складываем все панели в «одну корзину»
+            OverLogger.ClearConsole();
+            // Складываем все панели едино
             _allPanels = new List<RectTransform> {
                 mainScreenPanel, garageScreenPanel, settingsScreenPanel, creditsScreenPanel
             };
@@ -28,24 +30,16 @@ namespace OVERLIMIT.Menu
 
         public void ShowPanel(RectTransform targetPanel)
         {
-            // Если в контроллере забыли указать панель — выдаем ошибку
-            if (targetPanel == null)
-            {
-                OverLogger.LogError("Ошибка: Попытка открыть пустую панель!", this);
-                return;
-            }
-
             // Проходим по всем панелям: нужную включаем, остальные — выключаем
             foreach (var panel in _allPanels)
             {
                 if (panel != null)
                 {
-                    // Если панель совпадает с целью — true (включить), если нет — false (выключить)
                     panel.gameObject.SetActive(panel == targetPanel);
                 }
             }
 
-            OverLogger.LogSuccess($"Меню: Панель [{targetPanel.name}] теперь на экране.", this);
+            OverLogger.LogSuccess(AppMessages.MainMenu.PanelOpened(targetPanel.name), this);
         }
 
         // Быстрый метод для возврата на главный экран

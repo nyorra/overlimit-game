@@ -1,4 +1,4 @@
-namespace OVERlIMIT.Credits
+namespace OVERLIMIT.Credits
 {
     /// <summary>
     /// Текст для Credits

@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class CarController : MonoBehaviour
+namespace OVERLIMIT.Car
 {
-    // idk 
+    public class CarController : MonoBehaviour
+    {
+        // GameSelectedCar;
+    }
 }

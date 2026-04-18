@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using OVERLIMIT.Logging;
+using OVERLIMIT.Messages;
+
 
 namespace OVERLIMIT.Loading
 {
@@ -17,14 +19,6 @@ namespace OVERLIMIT.Loading
 
         public void SetupInitialState()
         {
-            // Проверка, не забыли ли мы притащить кнопки в инспектор
-            if (loadingProgressBar == null || continueHintText == null)
-            {
-                OverLogger.LogError("Забыл привязать Slider или Text в инспекторе!", this);
-                return;
-            }
-
-            // Прячем подсказку, включаем и обнуляем полоску
             continueHintText.gameObject.SetActive(false);
             loadingProgressBar.gameObject.SetActive(true);
             loadingProgressBar.value = 0f;
@@ -44,7 +38,7 @@ namespace OVERLIMIT.Loading
             // Прячем полоску и показываем текст, что можно входить
             loadingProgressBar?.gameObject.SetActive(false);
             continueHintText?.gameObject.SetActive(true);
-            OverLogger.LogSuccess("Всё загружено, показываю подсказку игроку.", this);
+            OverLogger.LogSuccess(AppMessages.Loading.ReadyHintShown, this);
         }
     }
 }

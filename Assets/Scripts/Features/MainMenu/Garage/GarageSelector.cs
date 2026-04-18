@@ -2,9 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using OVERLIMIT.Logging;
+using OVERLIMIT.Messages;
+
 
 namespace OVERLIMIT.Garage
 {
+    /// <summary>
+    /// Выборка машины по индексу, с нуля
+    /// </summary>
     public class GarageSelector : MonoBehaviour
     {
         public List<CarData> allCars;
@@ -15,36 +20,32 @@ namespace OVERLIMIT.Garage
 
         public void SwitchCar(int direction)
         {
-            if (allCars == null || allCars.Count == 0)
-            {
-                // Используем готовое сообщение из LogMessages
-                OverLogger.LogError(LogMessages.Garage.Empty, this);
-                return;
-            }
+            if (allCars.Count == 0) return;
 
             _currentIndex = (_currentIndex + direction + allCars.Count) % allCars.Count;
             SelectedCar = allCars[_currentIndex];
 
-            // Динамическое сообщение с именем машины
-            OverLogger.LogSuccess(LogMessages.Garage.Switched(SelectedCar.CarName), this);
-
+            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.Switched(SelectedCar.CarName), this);
             OnCarChanged?.Invoke(SelectedCar);
         }
 
         public void Init()
         {
-            if (allCars != null && allCars.Count > 0)
-            {
-                SelectedCar = allCars[0];
-                OnCarChanged?.Invoke(SelectedCar);
+            if (allCars.Count == 0) return;
 
-                // Логируем успешную инициализацию
-                OverLogger.LogSuccess(LogMessages.System.Initialized(nameof(GarageSelector)), this);
+            if (SelectedCar == null)
+            {
+                _currentIndex = 0;
+                SelectedCar = allCars[_currentIndex];
             }
             else
             {
-                OverLogger.LogWarning(LogMessages.Garage.Empty, this);
+                _currentIndex = allCars.IndexOf(SelectedCar);
+                if (_currentIndex == -1) _currentIndex = 0;
             }
+
+            OnCarChanged?.Invoke(SelectedCar);
+            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.InitializedSelector, this);
         }
     }
 }

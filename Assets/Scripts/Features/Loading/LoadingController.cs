@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using OVERLIMIT.Scenes;
 using OVERLIMIT.Logging;
+using OVERLIMIT.Validate;
+using OVERLIMIT.Messages;
 
 namespace OVERLIMIT.Loading
 {
@@ -22,11 +24,13 @@ namespace OVERLIMIT.Loading
 
         void Start()
         {
-            if (ui == null)
-            {
-                OverLogger.LogError("LoadingUI отсутствует!", this);
+            // Валидируем весь модуль LOADING разом в одном месте
+            if (this.BeginValidation()
+                    .Require(ui, nameof(ui))
+                    .Require(ui?.loadingProgressBar, $"{nameof(ui)}.{nameof(ui.loadingProgressBar)}")
+                    .Require(ui?.continueHintText, $"{nameof(ui)}.{nameof(ui.continueHintText)}")
+                    .LogAndCheck())
                 return;
-            }
 
             _processor = new LoadingProcessor();
             ui.SetupInitialState();
@@ -46,7 +50,7 @@ namespace OVERLIMIT.Loading
                 (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
                 (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame));
 
-            OverLogger.LogSuccess("Ввод получен. Переход в новую сцену.", this);
+            OverLogger.LogSuccess(AppMessages.Loading.InputReceived(nextScene.ToString()), this);
             _processor.ActivateScene();
         }
 
@@ -56,7 +60,7 @@ namespace OVERLIMIT.Loading
             IEnumerator loadTask = _processor.LoadSceneRoutine(nextScene);
             StartCoroutine(loadTask);
 
-            // Пока процессор делает работу, мы (контроллер) обновляем UI
+            // Пока процессор делает работу,  обновляем UI
             while (_processor.AsyncOperation == null || _processor.AsyncOperation.progress < 0.9f)
             {
                 if (_processor.AsyncOperation != null)

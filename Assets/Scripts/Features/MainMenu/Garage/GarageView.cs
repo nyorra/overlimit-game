@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using OVERLIMIT.Logging;
+using OVERLIMIT.Messages;
+
 
 namespace OVERLIMIT.Garage
 {
@@ -10,22 +12,18 @@ namespace OVERLIMIT.Garage
 
         private void OnEnable()
         {
-            // Подписываемся на событие при включении объекта
             GarageSelector.OnCarChanged += UpdateUI;
         }
 
         private void OnDisable()
         {
-            // Отписываемся, чтобы избежать утечек памяти
             GarageSelector.OnCarChanged -= UpdateUI;
         }
 
         public void UpdateUI(CarData car)
         {
-            if (car == null) return;
-
             SelectedCarText.text = car.CarName;
-            OverLogger.LogSuccess($"Интерфейс обновлен для: {car.CarName}", this);
+            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.Updated(car.CarName), this);
         }
     }
 }
