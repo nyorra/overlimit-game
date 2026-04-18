@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NewCarData
   m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Garage.CarData
   CarName: Mazda
-  CarPrefab: {fileID: 0}
+  CarPrefab: {fileID: 5739596369659684597, guid: a9695e68068f8254a9cb74b0ed830da8, type: 3}
   MaxSpeed: 100
   Torque: 1000
   BrakeForce: 2000

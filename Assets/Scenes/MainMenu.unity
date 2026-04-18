@@ -865,6 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Garage.GarageController
   selector: {fileID: 647651774}
+  view: {fileID: 647651776}
   nextButton: {fileID: 2126810208}
   prevButton: {fileID: 1663681555}
 --- !u!114 &647651776
@@ -879,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbf2b40325c34a41858d2eb4c835a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Garage.GarageView
-  SelectedCarText: {fileID: 0}
+  SelectedCarText: {fileID: 320292968}
 --- !u!1 &703920517
 GameObject:
   m_ObjectHideFlags: 0
