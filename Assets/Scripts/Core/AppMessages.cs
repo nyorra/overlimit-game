@@ -41,10 +41,10 @@ namespace OVERLIMIT.Messages
             // гараж
             public static class Garage
             {
-                public static string Switched(string car) => $"Машина изменена на: {car}";
-                public static string Updated(string target) => $"Интерфейс [{target}] обновлен.";
-                public static string InitializedController = "Система успешно запущена.";
-                public static string InitializedSelector = "Система успешно запущена.";
+                public static string Switched(string car) => $"Выбранная машина изменена на: {car}";
+                public static string Updated(string target) => $"Поле отображения SelectCarText обновлено. Выбранная машина: {target}";
+                public static string PrevNextButton = "Кнопки выбора prev/next доабвлены";
+                public static string InitializedSelector = "Селектор успешно запущена.";
 
 
             }

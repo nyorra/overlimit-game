@@ -22,30 +22,13 @@ namespace OVERLIMIT.Garage
         {
             if (allCars.Count == 0) return;
 
+            // способ прокрутки машин по кругу, с помощью %
             _currentIndex = (_currentIndex + direction + allCars.Count) % allCars.Count;
+            // подгружаем префаб по индексу из CarData
             SelectedCar = allCars[_currentIndex];
 
             OverLogger.LogSuccess(AppMessages.MainMenu.Garage.Switched(SelectedCar.CarName), this);
             OnCarChanged?.Invoke(SelectedCar);
-        }
-
-        public void Init()
-        {
-            if (allCars.Count == 0) return;
-
-            if (SelectedCar == null)
-            {
-                _currentIndex = 0;
-                SelectedCar = allCars[_currentIndex];
-            }
-            else
-            {
-                _currentIndex = allCars.IndexOf(SelectedCar);
-                if (_currentIndex == -1) _currentIndex = 0;
-            }
-
-            OnCarChanged?.Invoke(SelectedCar);
-            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.InitializedSelector, this);
         }
     }
 }

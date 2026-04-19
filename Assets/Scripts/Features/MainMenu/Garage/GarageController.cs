@@ -33,29 +33,20 @@ namespace OVERLIMIT.Garage
 
                     .RequireList(selector?.allCars, $"{nameof(selector)}.{nameof(selector.allCars)}");
 
+            if (validation.LogAndCheck()) return;
 
 
             // проходим по всем машинам и проверяем их префабы
-            if (selector != null && selector.allCars != null)
+            foreach (var car in selector.allCars)
             {
-                foreach (var car in selector.allCars)
-                {
-                    if (car != null)
-                    {
-                        // Проверяем, что у каждой машины в ассете назначен префаб
-                        validation.Require(car.CarPrefab, $"{car.name}.{nameof(car.CarPrefab)}");
-                    }
-                }
+                // Проверяем, что у каждой машины в ассете назначен префаб
+                validation.Require(car.CarPrefab, $"{car.name}.{nameof(car.CarPrefab)}");
             }
-
-            if (validation.LogAndCheck())
-                return;
 
             nextButton.onClick.AddListener(() => selector.SwitchCar(1));
             prevButton.onClick.AddListener(() => selector.SwitchCar(-1));
 
-            selector.Init();
-            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.InitializedController, this);
+            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.PrevNextButton, this);
         }
     }
 }
