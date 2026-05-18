@@ -1,7 +1,7 @@
-using UnityEngine;
-using OVERLIMIT.Logging;
 using OVERLIMIT.Garage;
+using OVERLIMIT.Logging;
 using OVERLIMIT.Messages;
+using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
@@ -10,7 +10,6 @@ public class CarSpawner : MonoBehaviour
         if (GarageSelector.SelectedCar == null)
         {
             OverLogger.LogError(AppMessages.City.SelectNull, this);
-
         }
     }
 }

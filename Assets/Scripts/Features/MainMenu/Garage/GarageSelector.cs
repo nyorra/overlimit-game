@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using OVERLIMIT.Logging;
 using OVERLIMIT.Messages;
-
+using UnityEngine;
 
 namespace OVERLIMIT.Garage
 {
@@ -20,7 +19,8 @@ namespace OVERLIMIT.Garage
 
         public void SwitchCar(int direction)
         {
-            if (allCars.Count == 0) return;
+            if (allCars.Count == 0)
+                return;
 
             // способ прокрутки машин по кругу, с помощью %
             _currentIndex = (_currentIndex + direction + allCars.Count) % allCars.Count;

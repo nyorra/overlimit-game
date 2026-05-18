@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
-using OVERLIMIT.Scenes;
 using OVERLIMIT.Logging;
 using OVERLIMIT.Messages;
+using OVERLIMIT.Scenes;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace OVERLIMIT.Loading
 {

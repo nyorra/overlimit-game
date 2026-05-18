@@ -1,9 +1,8 @@
+using OVERLIMIT.Logging;
+using OVERLIMIT.Messages;
+using OVERLIMIT.Validate;
 using UnityEngine;
 using UnityEngine.UI;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Validate;
-using OVERLIMIT.Messages;
-
 
 namespace OVERLIMIT.Garage
 {
@@ -23,18 +22,16 @@ namespace OVERLIMIT.Garage
         {
             // базовая проверка модулей
             var validation = this.BeginValidation()
-                    .Require(selector, nameof(selector))
-                    .Require(view, nameof(view))
-                    .Require(nextButton, nameof(nextButton))
-                    .Require(prevButton, nameof(prevButton))
+                .Require(selector, nameof(selector))
+                .Require(view, nameof(view))
+                .Require(nextButton, nameof(nextButton))
+                .Require(prevButton, nameof(prevButton))
+                // Обращаемся к тексту ЧЕРЕЗ объект view
+                .Require(view?.SelectedCarText, $"{nameof(view)}.{nameof(view.SelectedCarText)}")
+                .RequireList(selector?.allCars, $"{nameof(selector)}.{nameof(selector.allCars)}");
 
-                    // Обращаемся к тексту ЧЕРЕЗ объект view
-                    .Require(view?.SelectedCarText, $"{nameof(view)}.{nameof(view.SelectedCarText)}")
-
-                    .RequireList(selector?.allCars, $"{nameof(selector)}.{nameof(selector.allCars)}");
-
-            if (validation.LogAndCheck()) return;
-
+            if (validation.LogAndCheck())
+                return;
 
             // проходим по всем машинам и проверяем их префабы
             foreach (var car in selector.allCars)

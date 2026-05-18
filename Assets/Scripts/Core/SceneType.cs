@@ -2,9 +2,9 @@
 namespace OVERLIMIT.Scenes
 {
     public enum SceneType
-    {   
+    {
         Loading,
         MainMenu,
-        City
-    }   
+        City,
+    }
 }

@@ -1,7 +1,7 @@
-using UnityEngine;
 using System.Collections.Generic;
 using OVERLIMIT.Logging;
 using OVERLIMIT.Messages;
+using UnityEngine;
 
 namespace OVERLIMIT.Menu
 {
@@ -23,8 +23,12 @@ namespace OVERLIMIT.Menu
         {
             OverLogger.ClearConsole();
             // Складываем все панели едино
-            _allPanels = new List<RectTransform> {
-                mainScreenPanel, garageScreenPanel, settingsScreenPanel, creditsScreenPanel
+            _allPanels = new List<RectTransform>
+            {
+                mainScreenPanel,
+                garageScreenPanel,
+                settingsScreenPanel,
+                creditsScreenPanel,
             };
         }
 

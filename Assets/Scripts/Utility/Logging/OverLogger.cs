@@ -1,20 +1,21 @@
-using UnityEngine;
 using System;
-using System.Reflection;
 using System.Diagnostics;
+using System.Reflection;
+using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
 namespace OVERLIMIT.Logging
 {
     /// <summary>
-    /// Глобальная система логирования. 
+    /// Глобальная система логирования.
     /// Поддерживает фильтрацию по уровням, цветовое форматирование и контекстные ссылки на объекты.
     /// </summary>
     public static class OverLogger
     {
         // Кэш настроек
         private static LogSettings _settings;
+
         // Флаг, гарантирующий загрузку настроек только один раз за сессию
         private static bool _settingsLoaded;
 
@@ -27,7 +28,8 @@ namespace OVERLIMIT.Logging
                     _settings = Resources.Load<LogSettings>("LogSettings");
 
                     // Если файл не найден, создаем временный экземпляр в памяти, чтобы избежать ошибок
-                    if (_settings == null) _settings = ScriptableObject.CreateInstance<LogSettings>();
+                    if (_settings == null)
+                        _settings = ScriptableObject.CreateInstance<LogSettings>();
                     _settingsLoaded = true;
                 }
                 return _settings;
@@ -43,7 +45,10 @@ namespace OVERLIMIT.Logging
         public static void LogSuccess(string message, Object context = null)
         {
             if (IsAllowed(LogLevels.Success))
-                Debug.Log(Format(LogConfig.PrefixSuccess, message, LogConfig.ColorSuccess, context), context);
+                Debug.Log(
+                    Format(LogConfig.PrefixSuccess, message, LogConfig.ColorSuccess, context),
+                    context
+                );
         }
 
         //Выводит предупреждение. Вырезается из финального билда.
@@ -52,7 +57,10 @@ namespace OVERLIMIT.Logging
         public static void LogWarning(string message, Object context = null)
         {
             if (IsAllowed(LogLevels.Warning))
-                Debug.LogWarning(Format(LogConfig.PrefixWarning, message, LogConfig.ColorWarning, context), context);
+                Debug.LogWarning(
+                    Format(LogConfig.PrefixWarning, message, LogConfig.ColorWarning, context),
+                    context
+                );
         }
 
         // Выводит критическую ОШИБКУ. Работает во всех типах билдов.
@@ -60,15 +68,27 @@ namespace OVERLIMIT.Logging
         public static void LogError(string message, Object context = null)
         {
             if (IsAllowed(LogLevels.Error))
-                Debug.LogError(Format(LogConfig.PrefixError, message, LogConfig.ColorError, context), context);
+                Debug.LogError(
+                    Format(LogConfig.PrefixError, message, LogConfig.ColorError, context),
+                    context
+                );
         }
 
         // Выводит системное ИСКЛЮЧЕНИЕ, сохраняя полную структуру ошибки
         [UnityEngine.HideInCallstack]
         public static void LogError(Exception ex, Object context = null)
         {
-            if (!IsAllowed(LogLevels.Error) || ex == null) return;
-            Debug.LogError(Format(LogConfig.PrefixError, $"Exception: {ex.Message}", LogConfig.ColorError, context), context);
+            if (!IsAllowed(LogLevels.Error) || ex == null)
+                return;
+            Debug.LogError(
+                Format(
+                    LogConfig.PrefixError,
+                    $"Exception: {ex.Message}",
+                    LogConfig.ColorError,
+                    context
+                ),
+                context
+            );
             Debug.LogException(ex, context);
         }
 
@@ -80,12 +100,11 @@ namespace OVERLIMIT.Logging
 #if UNITY_EDITOR
             return $"<color={color}>{finalMsg}</color>";
 #else
-    if (Settings.EnableColorsInBuild)
-        return $"<color={color}>{finalMsg}</color>";
-    return finalMsg;
+            if (Settings.EnableColorsInBuild)
+                return $"<color={color}>{finalMsg}</color>";
+            return finalMsg;
 #endif
         }
-
 
         [Conditional("UNITY_EDITOR")]
         public static void ClearConsole()

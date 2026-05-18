@@ -1,14 +1,14 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
-using OVERLIMIT.Scenes;
 using OVERLIMIT.Logging;
 using OVERLIMIT.Messages;
+using OVERLIMIT.Scenes;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace OVERLIMIT.Menu
 {
     /// <summary>
-    /// Простой загрузчик сцен для главного меню. 
+    /// Простой загрузчик сцен для главного меню.
     /// Используется для быстрых переходов
     /// </summary>
     public class MenuLoader : MonoBehaviour
@@ -18,7 +18,8 @@ namespace OVERLIMIT.Menu
 
         public void LoadScene(SceneType scene)
         {
-            if (_isLoading) return;
+            if (_isLoading)
+                return;
             StartCoroutine(LoadRoutine(scene));
         }
 

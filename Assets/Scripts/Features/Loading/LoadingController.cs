@@ -1,15 +1,15 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.InputSystem;
-using OVERLIMIT.Scenes;
 using OVERLIMIT.Logging;
-using OVERLIMIT.Validate;
 using OVERLIMIT.Messages;
+using OVERLIMIT.Scenes;
+using OVERLIMIT.Validate;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace OVERLIMIT.Loading
 {
     /// <summary>
-    /// Управляет жизненным циклом экрана загрузки. координирует работу процессора загрузки, 
+    /// Управляет жизненным циклом экрана загрузки. координирует работу процессора загрузки,
     /// обновление интерфейса и ожидание ввода пользователя.
     /// </summary>
     public class LoadingController : MonoBehaviour
@@ -19,17 +19,23 @@ namespace OVERLIMIT.Loading
 
         // Ссылки на UI и загрузку сцены
         [Header("References")]
-        [SerializeField] private LoadingView ui;
+        [SerializeField]
+        private LoadingView ui;
         private LoadingProcessor _processor;
 
         void Start()
         {
             // Валидируем весь модуль LOADING разом в одном месте
-            if (this.BeginValidation()
+            if (
+                this.BeginValidation()
                     .Require(ui, nameof(ui))
-                    .Require(ui?.loadingProgressBar, $"{nameof(ui)}.{nameof(ui.loadingProgressBar)}")
+                    .Require(
+                        ui?.loadingProgressBar,
+                        $"{nameof(ui)}.{nameof(ui.loadingProgressBar)}"
+                    )
                     .Require(ui?.continueHintText, $"{nameof(ui)}.{nameof(ui.continueHintText)}")
-                    .LogAndCheck())
+                    .LogAndCheck()
+            )
                 return;
 
             _processor = new LoadingProcessor();
@@ -47,8 +53,9 @@ namespace OVERLIMIT.Loading
 
             // Ждем ввод
             yield return new WaitUntil(() =>
-                (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
-                (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame));
+                (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+                || (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            );
 
             OverLogger.LogSuccess(AppMessages.Loading.InputReceived(nextScene.ToString()), this);
             _processor.ActivateScene();

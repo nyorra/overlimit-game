@@ -3,8 +3,5 @@ namespace OVERLIMIT.Credits
     /// <summary>
     /// Текст для Credits
     /// </summary>
-    public class CreditsMessages
-    {
-
-    }
+    public class CreditsMessages { }
 }

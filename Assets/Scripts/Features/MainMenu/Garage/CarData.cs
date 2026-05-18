@@ -5,7 +5,7 @@ namespace OVERLIMIT.Garage
     /// <summary>
     /// Схема данных машины
     /// </summary>
-    [CreateAssetMenu(fileName = "NewCarData", menuName = "Overlimit/Car Data")]
+    [CreateAssetMenu(fileName = "NewCarData", menuName = "OVERLIMIT/Car Data")]
     public class CarData : ScriptableObject
     {
         [Header("Model")]

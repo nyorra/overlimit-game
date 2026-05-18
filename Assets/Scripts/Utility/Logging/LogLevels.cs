@@ -8,7 +8,5 @@ namespace OVERLIMIT.Logging
         Warning = 2, // war error
         Error = 3, // only error
         Off = 4, // уровень отключения всех логов
-
     }
 }
-

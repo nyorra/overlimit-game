@@ -17,18 +17,25 @@ namespace OVERLIMIT.Validate
 
         public ValidationResult Require(Object component, string name)
         {
-            if (component == null) Errors.Add(name);
+            if (component == null)
+                Errors.Add(name);
             return this;
         }
 
-        public ValidationResult RequireList<T>(IEnumerable<T> collection, string name) where T : Object
+        public ValidationResult RequireList<T>(IEnumerable<T> collection, string name)
+            where T : Object
         {
-            if (collection == null) { Errors.Add(name); return this; }
+            if (collection == null)
+            {
+                Errors.Add(name);
+                return this;
+            }
 
             int index = 0;
             foreach (var item in collection)
             {
-                if (item == null) Errors.Add($"{name}[{index}]");
+                if (item == null)
+                    Errors.Add($"{name}[{index}]");
                 index++;
             }
             return this;

@@ -1,6 +1,6 @@
-using UnityEngine;
 using OVERLIMIT.Logging;
 using OVERLIMIT.Messages;
+using UnityEngine;
 
 namespace OVERLIMIT.Validate
 {
@@ -8,7 +8,7 @@ namespace OVERLIMIT.Validate
     /// Методы расширения для универсальной валидации компонентов Unity.
     /// Позволяет заменить ручные проверки на лаконичную цепочку вызовов.
     /// <example>
-    /// 
+    ///
     /// Пример использования в Start:
     /// <code>
     /// if (this.BeginValidation()
@@ -18,7 +18,6 @@ namespace OVERLIMIT.Validate
     /// </code>
     /// </example>
     /// </summary>
-
     public static class ValidationExtensions
     {
         // Начинаем цепочку, запоминая 'this' (MonoBehaviour или ScriptableObject)
@@ -36,7 +35,10 @@ namespace OVERLIMIT.Validate
                 {
                     // Если в ошибке есть точка (например view.SelectedCarText), используем NestedMissing
                     string msg = error.Contains(".")
-                        ? Messages.AppMessages.Validation.NestedMissing(error.Split('.')[0], error.Split('.')[1])
+                        ? Messages.AppMessages.Validation.NestedMissing(
+                            error.Split('.')[0],
+                            error.Split('.')[1]
+                        )
                         : Messages.AppMessages.Validation.Missing(error);
 
                     OverLogger.LogError(msg, result.Context);
