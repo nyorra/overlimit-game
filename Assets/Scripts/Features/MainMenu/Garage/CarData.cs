@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OVERLIMIT.Garage
+namespace OVERLIMIT.Features.MainMenu.Garage
 {
     /// <summary>
     /// Схема данных машины

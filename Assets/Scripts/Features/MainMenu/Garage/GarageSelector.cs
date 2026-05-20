@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
+using OVERLIMIT.Core.Messages.MainMenu;
+using OVERLIMIT.Utility.Logging;
 using UnityEngine;
 
-namespace OVERLIMIT.Garage
+namespace OVERLIMIT.Features.MainMenu.Garage
 {
     /// <summary>
     /// Выборка машины по индексу, с нуля
@@ -27,7 +27,7 @@ namespace OVERLIMIT.Garage
             // подгружаем префаб по индексу из CarData
             SelectedCar = allCars[_currentIndex];
 
-            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.Switched(SelectedCar.CarName), this);
+            OverLogger.LogSuccess(GarageMsg.Switched(SelectedCar.CarName), this);
             OnCarChanged?.Invoke(SelectedCar);
         }
     }

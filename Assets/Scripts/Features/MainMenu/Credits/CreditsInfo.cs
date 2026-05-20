@@ -1,4 +1,4 @@
-namespace OVERLIMIT.Credits
+namespace OVERLIMIT.Features.MainMenu.Credits
 {
     /// <summary>
     /// Будут ссылки и инфо

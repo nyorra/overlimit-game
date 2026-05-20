@@ -1,10 +1,8 @@
-using OVERLIMIT.Config;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
-using OVERLIMIT.Validate;
+using OVERLIMIT.Core.Config;
+using OVERLIMIT.Utility.Validation;
 using UnityEngine;
 
-namespace OVERLIMIT.Camera
+namespace OVERLIMIT.Features.City.Camera
 {
     public class CameraController : MonoBehaviour
     {

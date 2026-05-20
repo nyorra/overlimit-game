@@ -1,5 +1,5 @@
 // Перечисление сцен преокта
-namespace OVERLIMIT.Scenes
+namespace OVERLIMIT.Core
 {
     public enum SceneType
     {

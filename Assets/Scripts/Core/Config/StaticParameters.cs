@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace OVERLIMIT.StaticParameters
+namespace OVERLIMIT.Core.Config
 {
     /// <summary>
     /// Класс для неизменяемый параметров
     /// </summary>
-    public class CameraController : MonoBehaviour { }
+    public class StaticParameters : MonoBehaviour { }
 }

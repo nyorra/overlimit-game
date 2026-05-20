@@ -1,15 +1,18 @@
-using OVERLIMIT.Garage;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
+using OVERLIMIT.Core.Messages.City;
+using OVERLIMIT.Features.MainMenu.Garage;
+using OVERLIMIT.Utility.Logging;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour
+namespace OVERLIMIT.Features.City.Car
 {
-    void Start()
+    public class CarSpawner : MonoBehaviour
     {
-        if (GarageSelector.SelectedCar == null)
+        void Start()
         {
-            OverLogger.LogError(AppMessages.City.SelectNull, this);
+            if (GarageSelector.SelectedCar == null)
+            {
+                OverLogger.LogError(SelfCityMsg.SelectNull, this);
+            }
         }
     }
 }

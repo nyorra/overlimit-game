@@ -1,8 +1,8 @@
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
+using OVERLIMIT.Core.Messages.Utility;
+using OVERLIMIT.Utility.Logging;
 using UnityEngine;
 
-namespace OVERLIMIT.Validate
+namespace OVERLIMIT.Utility.Validation
 {
     /// <summary>
     /// Методы расширения для универсальной валидации компонентов Unity.
@@ -35,14 +35,20 @@ namespace OVERLIMIT.Validate
                 {
                     // Если в ошибке есть точка (например view.SelectedCarText), используем NestedMissing
                     string msg = error.Contains(".")
-                        ? Messages.AppMessages.Validation.NestedMissing(
-                            error.Split('.')[0],
-                            error.Split('.')[1]
-                        )
-                        : Messages.AppMessages.Validation.Missing(error);
+                        ? ValidationMsg.NestedMissing(error.Split('.')[0], error.Split('.')[1])
+                        : ValidationMsg.Missing(error);
 
                     OverLogger.LogError(msg, result.Context);
                 }
+            }
+            else
+            {
+                // Если ошибок нет — выводим один зеленый лог успеха для всего объекта
+                // result.Context — это исходный MonoBehaviour или ScriptableObject
+                string successMsg = ValidationMsg.Success(
+                    result.Context != null ? result.Context.name : "Unknown"
+                );
+                OverLogger.LogSuccess(successMsg, result.Context);
             }
             return result.HasError;
         }

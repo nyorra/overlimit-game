@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OVERLIMIT.States
+namespace OVERLIMIT.Core
 {
     /// <summary>
     /// Класс для отслеживания игровых состояний

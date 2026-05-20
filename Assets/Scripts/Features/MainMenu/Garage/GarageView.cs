@@ -1,9 +1,9 @@
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
+using OVERLIMIT.Core.Messages.MainMenu;
+using OVERLIMIT.Utility.Logging;
 using TMPro;
 using UnityEngine;
 
-namespace OVERLIMIT.Garage
+namespace OVERLIMIT.Features.MainMenu.Garage
 {
     public class GarageView : MonoBehaviour
     {
@@ -22,7 +22,7 @@ namespace OVERLIMIT.Garage
         public void UpdateUI(CarData car)
         {
             SelectedCarText.text = car.CarName;
-            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.Updated(car.CarName), this);
+            OverLogger.LogSuccess(GarageMsg.Updated(car.CarName), this);
         }
     }
 }

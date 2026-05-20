@@ -1,11 +1,11 @@
 using System.Collections;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
-using OVERLIMIT.Scenes;
+using OVERLIMIT.Core;
+using OVERLIMIT.Core.Messages.Loading;
+using OVERLIMIT.Utility.Logging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace OVERLIMIT.Loading
+namespace OVERLIMIT.Features.Loading
 {
     /// <summary>
     /// Техническая часть загрузки
@@ -24,20 +24,20 @@ namespace OVERLIMIT.Loading
 
             if (AsyncOperation == null)
             {
-                OverLogger.LogError(AppMessages.Loading.LoadNotFound(sceneName), null);
+                OverLogger.LogError(SelfLoadingMsg.LoadNotFound(sceneName), null);
                 yield break;
             }
 
             // Запрещаем игре сразу переключаться, пока мы не разрешим (через кнопку)
             AsyncOperation.allowSceneActivation = false;
-            OverLogger.LogSuccess(AppMessages.Loading.BackgroundLoading(sceneName), null);
+            OverLogger.LogSuccess(SelfLoadingMsg.BackgroundLoading(sceneName), null);
             // Ждем, пока всё прогрузится в память (0.9 — это максимум для этого режима)
             while (AsyncOperation.progress < 0.9f)
             {
                 yield return null;
             }
 
-            OverLogger.LogSuccess(AppMessages.Loading.WaitForUserInput, null);
+            OverLogger.LogSuccess(SelfLoadingMsg.WaitForUserInput, null);
         }
 
         public void ActivateScene()

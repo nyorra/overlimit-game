@@ -1,4 +1,4 @@
-namespace OVERLIMIT.Logging
+namespace OVERLIMIT.Utility.Logging
 {
     public enum LogLevels
     {

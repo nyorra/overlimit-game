@@ -1,10 +1,10 @@
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
+using OVERLIMIT.Core.Messages.Loading;
+using OVERLIMIT.Utility.Logging;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OVERLIMIT.Loading
+namespace OVERLIMIT.Features.Loading
 {
     /// <summary>
     /// Внешний вид
@@ -37,7 +37,7 @@ namespace OVERLIMIT.Loading
             // Прячем полоску и показываем текст, что можно входить
             loadingProgressBar?.gameObject.SetActive(false);
             continueHintText?.gameObject.SetActive(true);
-            OverLogger.LogSuccess(AppMessages.Loading.ReadyHintShown, this);
+            OverLogger.LogSuccess(SelfLoadingMsg.ReadyHintShown, this);
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
-namespace OVERLIMIT.Logging
+namespace OVERLIMIT.Utility.Logging
 {
     /// <summary>
     /// Глобальная система логирования.

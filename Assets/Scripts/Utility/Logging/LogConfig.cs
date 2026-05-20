@@ -1,6 +1,6 @@
 // Логирование по трем уровням: warning, error, success. Различие по цветам
 
-namespace OVERLIMIT.Logging
+namespace OVERLIMIT.Utility.Logging
 {
     public static class LogConfig
     // Задаем префиксы и цвета для логов

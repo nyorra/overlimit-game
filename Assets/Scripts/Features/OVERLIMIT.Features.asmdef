@@ -1,0 +1,19 @@
+{
+    "name": "OVERLIMIT.Features",
+    "rootNamespace": "OVERLIMIT.Features",
+    "references": [
+        "GUID:9dd59a0c354fdef4c92dabff63d6cf3e",
+        "GUID:89f4270a255b65543b5f8fcaaac4a3c0",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

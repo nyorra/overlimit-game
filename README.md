@@ -25,7 +25,7 @@
 *   `clean`: Удаление мусора, неиспользуемых импортов.
 
 ### 2. Код и Архитектура
-*   **Single Source of Truth:** Все текстовые данные и логи вынесены в `OVERLIMIT.Messages.AppMessages`.
+*   **Single Source of Truth:** Все текстовые данные и логи вынесены в `OVERLIMIT.Messages.Messages`.
 *   **Fluent Validation:** Любой MonoBehaviour обязан проверять зависимости через цепочку `.BeginValidation().Require().LogAndCheck()`.
 *   **Contextual Logging:** При вызове `OverLogger` обязательно передается `this` для обеспечения кликабельности контекста в консоли Unity.
 *   **Namespaces:** Строгое соответствие пространств имен структуре папок (например, `OVERLIMIT.Features.Loading`).
@@ -36,7 +36,7 @@
 
 ### 📁 Scripts/Core/
 Глобальная инфраструктура проекта:
-*   `AppMessages.cs` — Единое хранилище всех строк (Single Source of Truth).
+*   `Messages.cs` — Единое хранилище всех строк (Single Source of Truth).
 *   `GameState.cs` — Управление глобальным состоянием и сохранениями.
 *   `SceneType.cs` — Перечисление игровых локаций (Enum).
 

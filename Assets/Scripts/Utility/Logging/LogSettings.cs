@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OVERLIMIT.Logging
+namespace OVERLIMIT.Utility.Logging
 {
     [CreateAssetMenu(fileName = "LogSettings", menuName = "OVERLIMIT/Log Settings")]
     public class LogSettings : ScriptableObject

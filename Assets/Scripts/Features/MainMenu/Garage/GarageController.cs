@@ -1,10 +1,10 @@
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
-using OVERLIMIT.Validate;
+using OVERLIMIT.Core.Messages.MainMenu;
+using OVERLIMIT.Utility.Logging;
+using OVERLIMIT.Utility.Validation;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OVERLIMIT.Garage
+namespace OVERLIMIT.Features.MainMenu.Garage
 {
     /// <summary>
     /// Проверка модулей, инит кнопок вызов селектора - выбор машины
@@ -43,7 +43,7 @@ namespace OVERLIMIT.Garage
             nextButton.onClick.AddListener(() => selector.SwitchCar(1));
             prevButton.onClick.AddListener(() => selector.SwitchCar(-1));
 
-            OverLogger.LogSuccess(AppMessages.MainMenu.Garage.PrevNextButton, this);
+            OverLogger.LogSuccess(GarageMsg.PrevNextButton, this);
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OVERLIMIT.Validate
+namespace OVERLIMIT.Utility.Validation
 {
     /// <summary>
     /// Объект-контейнер для сбора и хранения результатов валидации.

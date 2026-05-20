@@ -537,11 +537,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 579145048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ee5fe48c71c20049a4710e60006667b, type: 3}
+  m_Script: {fileID: 11500000, guid: b10ed34698b470c41be02e4430535f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Camera.CameraController
+  cameraConfig: {fileID: 11400000, guid: 9ef4432150a85d54981db09d11cfe9d3, type: 2}
   cameraTarget: {fileID: 38351526}
-  cameraIndent: 0
 --- !u!1 &688822038
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 966634260}
+  - component: {fileID: 966634261}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Untagged
@@ -683,6 +684,18 @@ Transform:
   - {fileID: 38351526}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966634261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966634259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fff52a4e54e86242a2c5ab655f0d94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Car.CarController
 --- !u!1 &1054186796
 GameObject:
   m_ObjectHideFlags: 0

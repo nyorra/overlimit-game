@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
+using OVERLIMIT.Core.Messages.MainMenu;
+using OVERLIMIT.Utility.Logging;
 using UnityEngine;
 
 namespace OVERLIMIT.Menu
@@ -43,7 +43,7 @@ namespace OVERLIMIT.Menu
                 }
             }
 
-            OverLogger.LogSuccess(AppMessages.MainMenu.PanelOpened(targetPanel.name), this);
+            OverLogger.LogSuccess(SelfMainMenuMsg.PanelOpened(targetPanel.name), this);
         }
 
         // Быстрый метод для возврата на главный экран

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfaa9e370e162146ad3248a5d8dc3a1, type: 3}
   m_Name: CameraSettings
   m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Config.CameraConfig
-  indent: 150
-  height: 2.3
+  indent: 200
+  height: 45

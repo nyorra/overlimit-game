@@ -1,8 +1,7 @@
-using System;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
-using OVERLIMIT.Scenes;
-using OVERLIMIT.Validate;
+using OVERLIMIT.Core;
+using OVERLIMIT.Core.Messages.MainMenu;
+using OVERLIMIT.Utility.Logging;
+using OVERLIMIT.Utility.Validation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -82,7 +81,7 @@ namespace OVERLIMIT.Menu
                 btn.onClick.AddListener(navigation.ShowMain);
             }
 
-            OverLogger.LogSuccess(AppMessages.MainMenu.MenuReady, this);
+            OverLogger.LogSuccess(SelfMainMenuMsg.MenuReady, this);
         }
     }
 }

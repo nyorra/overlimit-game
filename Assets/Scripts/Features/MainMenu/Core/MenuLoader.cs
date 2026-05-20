@@ -1,7 +1,7 @@
 using System.Collections;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
-using OVERLIMIT.Scenes;
+using OVERLIMIT.Core;
+using OVERLIMIT.Core.Messages.MainMenu;
+using OVERLIMIT.Utility.Logging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,14 +28,14 @@ namespace OVERLIMIT.Menu
             _isLoading = true;
             string sceneName = scene.ToString();
 
-            OverLogger.LogSuccess(AppMessages.MainMenu.LoadStarted(sceneName), this);
+            OverLogger.LogSuccess(SelfMainMenuMsg.LoadStarted(sceneName), this);
 
             // Запускаем асинхронную загрузку Unity
             AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
 
             if (op == null)
             {
-                OverLogger.LogError(AppMessages.MainMenu.MainNotFound(sceneName), this);
+                OverLogger.LogError(SelfMainMenuMsg.MainNotFound(sceneName), this);
                 _isLoading = false;
                 yield break;
             }

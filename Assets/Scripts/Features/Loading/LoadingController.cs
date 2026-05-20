@@ -1,12 +1,12 @@
 using System.Collections;
-using OVERLIMIT.Logging;
-using OVERLIMIT.Messages;
-using OVERLIMIT.Scenes;
-using OVERLIMIT.Validate;
+using OVERLIMIT.Core;
+using OVERLIMIT.Core.Messages.Loading;
+using OVERLIMIT.Utility.Logging;
+using OVERLIMIT.Utility.Validation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace OVERLIMIT.Loading
+namespace OVERLIMIT.Features.Loading
 {
     /// <summary>
     /// Управляет жизненным циклом экрана загрузки. координирует работу процессора загрузки,
@@ -57,7 +57,7 @@ namespace OVERLIMIT.Loading
                 || (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             );
 
-            OverLogger.LogSuccess(AppMessages.Loading.InputReceived(nextScene.ToString()), this);
+            OverLogger.LogSuccess(SelfLoadingMsg.InputReceived(nextScene.ToString()), this);
             _processor.ActivateScene();
         }
 
