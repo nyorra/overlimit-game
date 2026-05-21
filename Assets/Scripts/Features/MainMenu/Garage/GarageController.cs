@@ -21,16 +21,22 @@ namespace OVERLIMIT.Features.MainMenu.Garage
         void Start()
         {
             // базовая проверка модулей
-            var validation = this.BeginValidation()
-                .Require(selector, nameof(selector))
-                .Require(view, nameof(view))
-                .Require(nextButton, nameof(nextButton))
-                .Require(prevButton, nameof(prevButton))
-                // Обращаемся к тексту ЧЕРЕЗ объект view
-                .Require(view?.SelectedCarText, $"{nameof(view)}.{nameof(view.SelectedCarText)}")
-                .RequireList(selector?.allCars, $"{nameof(selector)}.{nameof(selector.allCars)}");
-
-            if (validation.LogAndCheck())
+            if (
+                this.BeginValidation()
+                    .Require(selector, nameof(selector))
+                    .Require(view, nameof(view))
+                    .Require(nextButton, nameof(nextButton))
+                    .Require(prevButton, nameof(prevButton))
+                    .Require(
+                        view?.SelectedCarText,
+                        $"{nameof(view)}.{nameof(view.SelectedCarText)}"
+                    )
+                    .RequireList(
+                        selector?.allCars,
+                        $"{nameof(selector)}.{nameof(selector.allCars)}"
+                    )
+                    .LogAndCheck()
+            )
                 return;
 
             // проходим по всем машинам и проверяем их префабы
