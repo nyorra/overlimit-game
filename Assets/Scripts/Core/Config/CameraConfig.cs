@@ -6,7 +6,7 @@ namespace OVERLIMIT.Core.Config
     public class CameraConfig : ScriptableObject
     {
         [Header("Параметры позиции камеры")]
-        public float indent = 150f; // Дистанция назад
-        public float height = 2.3f; // Высота над машиной
+        public float indent = 200f; // Дистанция назад
+        public float height = 45f; // Высота над машиной
     }
 }
