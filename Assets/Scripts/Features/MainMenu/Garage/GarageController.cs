@@ -39,13 +39,6 @@ namespace OVERLIMIT.Features.MainMenu.Garage
             )
                 return;
 
-            // проходим по всем машинам и проверяем их префабы
-            foreach (var car in selector.allCars)
-            {
-                // Проверяем, что у каждой машины в ассете назначен префаб
-                validation.Require(car.CarPrefab, $"{car.name}.{nameof(car.CarPrefab)}");
-            }
-
             nextButton.onClick.AddListener(() => selector.SwitchCar(1));
             prevButton.onClick.AddListener(() => selector.SwitchCar(-1));
 
