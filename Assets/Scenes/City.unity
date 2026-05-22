@@ -658,6 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966634260}
   - component: {fileID: 966634261}
+  - component: {fileID: 966634262}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Untagged
@@ -696,6 +697,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fff52a4e54e86242a2c5ab655f0d94b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OVERLIMIT.Car.CarController
+--- !u!54 &966634262
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966634259}
+  serializedVersion: 5
+  m_Mass: 1500
+  m_LinearDamping: 0.5
+  m_AngularDamping: 5
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1054186796
 GameObject:
   m_ObjectHideFlags: 0
