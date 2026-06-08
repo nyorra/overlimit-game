@@ -105,7 +105,7 @@ namespace OVERLIMIT.Utility.Logging
             return finalMsg;
 #endif
         }
-
+#if UNITY_EDITOR
         [Conditional("UNITY_EDITOR")]
         public static void ClearConsole()
         {
@@ -115,3 +115,4 @@ namespace OVERLIMIT.Utility.Logging
         }
     }
 }
+#endif
