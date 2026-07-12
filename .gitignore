@@ -1,4 +1,4 @@
-# Временные папки Unity
+# Unity temporary folders
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -8,13 +8,13 @@
 /[Uu]ser[Ss]ettings/
 .utmp/
 
-# Логи и кэш редакторов
+# IDE/Editor logs and cache
 *.log
 .vs/
 .gradle/
 .vscode/
 
-# Файлы решений и проектов
+# IDE solution and project files
 ExportedObj/
 .consulo/
 *.csproj
@@ -33,26 +33,26 @@ ExportedObj/
 *.opendb
 *.VC.db
 
-# Временные файлы Unity3D
+# Unity3D temporary meta files
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
 sysinfo.txt
 mono_crash.*
 
-# Сборки
+# Builds and packages
 *.apk
 *.aab
 *.unitypackage
 *.unitypackage.meta
 *.app
 
-# Файлы плагинов и генерации
+# Plugins and auto-generated settings
 /[Aa]ssets/Plugins/Editor/JetBrains*
 *.DotSettings.user
 crashlytics-build.properties
 
-# Исключения для Addressables и скриптинга
+# Addressables and Visual Scripting exclusions
 /ServerData
 /[Aa]ssets/StreamingAssets/aa*
 /[Aa]ssets/AddressableAssetsData/link.xml*
@@ -60,7 +60,7 @@ crashlytics-build.properties
 /[Aa]ssets/AddressableAssetsData/*/*.bin*
 /[Aa]ssets/Unity.VisualScripting.Generated/
 
-# Ваши личные исключения (если нужно скрыть эти файлы)
+# Personal local documentation exceptions
 ROUTINE.txt
 IDEAS.md
 ROADMAP.md
