@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a2f451c0fcf5d428e2d6131ac5e02e, type: 3}
+  m_Name: E30
+  m_EditorClassIdentifier: OVERLIMIT.Features::OVERLIMIT.Features.MainMenu.Garage.CarData
+  CarName: BMW_E30
+  CarPrefab: {fileID: 6086632864336973926, guid: 930aa736b59bc31489d4278dc29cd342, type: 3}
+  WheelPrfab: {fileID: 4840669784461367754, guid: 93a07990e6c67974caae8f023d13e72f, type: 3}
+  MaxSpeed: 150
+  Torque: 12000
+  BrakeForce: 15000
