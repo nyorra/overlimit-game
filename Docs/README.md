@@ -1,8 +1,8 @@
 # OVERLIMIT 🏎️
 
-Аркадная гонка, вдохновленная золотой эрой стритрейтинга и эстетикой начала 2000-х.
+An arcade racing game inspired by the golden era of street racing and the aesthetics of the early 2000s.
 
-## 🛠 Технологический стек
+## 🛠 Tech Stack
 
 - **Engine:** [Unity](https://unity.com) (URP)
 - **Language:** C# 9.0+
@@ -12,76 +12,76 @@
 
 ---
 
-## 📏 Правила разработки (Workflow)
+## 📏 Development Guidelines (Workflow)
 
-Для поддержания чистоты репозитория и масштабируемости кода установлены следующие стандарты:
+To maintain a clean repository and ensure code scalability, the following standards are enforced:
 
-### 1. Стандарт коммитов
+### 1. Commit Message Standard
 
-Формат: `<prefix>: <description>`
+Format: `<prefix>: <description>`
 
-- `feat`: Новый функционал.
-- `fix`: Исправление багов.
-- `refactor`: Улучшение структуры кода без смены логики.
-- `docs`: Обновление документации.
-- `clean`: Удаление мусора, неиспользуемых импортов.
+- `feat`: New features or functionality.
+- `fix`: Bug fixes.
+- `refactor`: Structural code improvements without changing behavior.
+- `docs`: Documentation updates.
+- `clean`: Code cleanup, removing dead code, or unused imports.
 
-### 2. Код и Архитектура
+### 2. Code & Architecture
 
-- **Single Source of Truth:** Все текстовые данные и логи вынесены в `OVERLIMIT.Messages.Messages`.
-- **Fluent Validation:** Любой MonoBehaviour обязан проверять зависимости через цепочку `.BeginValidation().Require().LogAndCheck()`.
-- **Contextual Logging:** При вызове `OverLogger` обязательно передается `this` для обеспечения кликабельности контекста в консоли Unity.
-- **Namespaces:** Строгое соответствие пространств имен структуре папок (например, `OVERLIMIT.Features.Loading`).
+- **Single Source of Truth:** All text strings and logs must be localized within `OVERLIMIT.Messages.Messages`.
+- **Fluent Validation:** Every MonoBehaviour must validate its dependencies using the chaining syntax: `.BeginValidation().Require().LogAndCheck()`.
+- **Contextual Logging:** When calling `OverLogger`, always pass `this` as the context parameter to ensure clickable source routing in the Unity console.
+- **Namespaces:** Strict adherence to the folder structure (e.g., `OVERLIMIT.Features.Loading`).
 
 ---
 
-## 📂 Структура проекта
+## 📂 Project Structure
 
 ### 📁 Scripts/Core/
 
-Глобальная инфраструктура проекта:
+Global project infrastructure:
 
-- `Messages.cs` — Единое хранилище всех строк (Single Source of Truth).
-- `GameState.cs` — Управление глобальным состоянием и сохранениями.
-- `SceneType.cs` — Перечисление игровых локаций (Enum).
+- `Messages.cs` — Centralized string repository (Single Source of Truth).
+- `GameState.cs` — Core state management and save system tracking.
+- `SceneType.cs` — Enum definitions for game locations and levels.
 
 ### 📁 Scripts/Features/
 
-Модульная реализация игровых зон. Каждый модуль автономен и следует паттерну Controller/View:
+Modular implementation of game zones. Each module is self-contained and follows the Controller/View pattern:
 
-- **Loading/** — Система загрузки (Controller, View, Processor).
-- **MainMenu/** — Главное меню и его подсистемы (Garage, Settings, Credits).
-- **City/** — Механики открытого мира.
+- **Loading/** — Loading screen systems (Controller, View, Processor).
+- **MainMenu/** — Main menu and its sub-systems (Garage, Settings, Credits).
+- **City/** — Open-world gameplay mechanics.
 
 ### 📁 Scripts/Utility/
 
-Инструментарий и системные расширения:
+Toolsets and system extensions:
 
-- **Logging/** — Кастомная система `OverLogger` с поддержкой уровней и цветов.
-- **Validation/** — Фреймворк для автоматической проверки ссылок в инспекторе.
+- **Logging/** — Custom `OverLogger` system with log level filtering and rich text color formatting.
+- **Validation/** — Validation framework for automated Inspector reference checks.
 
 ---
 
-## 👤 Авторство и права
+## 👤 Credits & Legal
 
-**Автор:** Влад «Nyorra»  
+**Author:** Vlad "Nyorra"  
 **Telegram:** [@nyorra](https://t.me)  
-**Дата создания:** 31 марта 2026 г.
+**Created:** March 31, 2026
 
-### ⚖️ Лицензия / Legal Info
+### ⚖️ License / Legal Info
 
-© 2026 Влад Nyorra. **Все права защищены.**
+© 2026 Vlad Nyorra. **All rights reserved.**
 
-Данный проект является частной собственностью.
+This project is private intellectual property.
 
-- Запрещено копирование, распространение или использование исходного кода и ассетов без прямого письменного согласия автора.
-- Репозиторий предназначен для демонстрации навыков и не является Open Source.
+- Unauthorized copying, distribution, or commercial use of the source code and assets without explicit written consent from the author is strictly prohibited.
+- This repository is intended for portfolio demonstration purposes only and is not Open Source.
 
 ---
 
-## 🚀 Как запустить
+## 🚀 Getting Started
 
-1. Клонируйте репозиторий:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/nyorra/Overlimit-Game.git
