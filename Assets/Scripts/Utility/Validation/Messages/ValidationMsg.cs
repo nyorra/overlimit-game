@@ -1,8 +1,5 @@
 namespace OVERLIMIT.Core.Messages.Utility
 {
-    /// <summary>
-    /// Сообщения контроллера машин
-    /// </summar
     public static class ValidationMsg
     {
         public static string Missing(string field) => $"Не назначен компонент: {field}";

@@ -4,8 +4,8 @@ using UnityEngine;
 namespace OVERLIMIT.Utility.Validation
 {
     /// <summary>
-    /// Объект-контейнер для сбора и хранения результатов валидации.
-    /// Позволяет выстраивать цепочки проверок (Fluent API) и хранит ссылку на контекст для логирования.
+    /// Container object that collects and stores validation results.
+    /// Facilitates Fluent API check chains and preserves the source context reference for debugger routing.
     /// </summary>
     public class ValidationResult
     {
@@ -15,6 +15,7 @@ namespace OVERLIMIT.Utility.Validation
 
         public ValidationResult(Object context) => Context = context;
 
+        // Assures that a required reference field is assigned and not null
         public ValidationResult Require(Object component, string name)
         {
             if (component == null)
@@ -22,6 +23,7 @@ namespace OVERLIMIT.Utility.Validation
             return this;
         }
 
+        // Assures that a collection is allocated and none of its internal elements are missing or null.
         public ValidationResult RequireList<T>(IEnumerable<T> collection, string name)
             where T : Object
         {

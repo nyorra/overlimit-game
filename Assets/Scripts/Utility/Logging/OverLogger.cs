@@ -8,15 +8,15 @@ using Object = UnityEngine.Object;
 namespace OVERLIMIT.Utility.Logging
 {
     /// <summary>
-    /// Глобальная система логирования.
-    /// Поддерживает фильтрацию по уровням, цветовое форматирование и контекстные ссылки на объекты.
+    /// Global logging system.
+    /// Supports level-based filtering, rich text color formatting, and contextual object linking.
     /// </summary>
     public static class OverLogger
     {
-        // Кэш настроек
+        // Settings cache
         private static LogSettings _settings;
 
-        // Флаг, гарантирующий загрузку настроек только один раз за сессию
+        // Safety flag ensuring settings are loaded only once per session.
         private static bool _settingsLoaded;
 
         private static LogSettings Settings
@@ -27,7 +27,7 @@ namespace OVERLIMIT.Utility.Logging
                 {
                     _settings = Resources.Load<LogSettings>("LogSettings");
 
-                    // Если файл не найден, создаем временный экземпляр в памяти, чтобы избежать ошибок
+                    // Fallback: create a temporary instance in memory if the asset is missing to prevent null exceptions.
                     if (_settings == null)
                         _settings = ScriptableObject.CreateInstance<LogSettings>();
                     _settingsLoaded = true;
@@ -36,10 +36,10 @@ namespace OVERLIMIT.Utility.Logging
             }
         }
 
-        // сравнивает уровень лога с минимально допустимым в настройках
+        // Compares the incoming log level against the minimum threshold allowed in settings.
         private static bool IsAllowed(LogLevels level) => Settings.MinimumLevel <= level;
 
-        // Выводит позитивное уведомление. Вырезается из финального билда благодаря [Conditional].
+        //Logs a successful operation. Stripped from final release builds via [Conditional].
         [Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
         [UnityEngine.HideInCallstack]
         public static void LogSuccess(string message, Object context = null)
@@ -51,7 +51,7 @@ namespace OVERLIMIT.Utility.Logging
                 );
         }
 
-        //Выводит предупреждение. Вырезается из финального билда.
+        //Logs a waning notification. Stripped from final release builds via [Conditional].
         [Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
         [UnityEngine.HideInCallstack]
         public static void LogWarning(string message, Object context = null)
@@ -63,7 +63,7 @@ namespace OVERLIMIT.Utility.Logging
                 );
         }
 
-        // Выводит критическую ОШИБКУ. Работает во всех типах билдов.
+        // Logs a critical error. Active across all build types.
         [UnityEngine.HideInCallstack]
         public static void LogError(string message, Object context = null)
         {
@@ -74,7 +74,7 @@ namespace OVERLIMIT.Utility.Logging
                 );
         }
 
-        // Выводит системное ИСКЛЮЧЕНИЕ, сохраняя полную структуру ошибки
+        // Logs a system exception while preserving the full stack trace structure.
         [UnityEngine.HideInCallstack]
         public static void LogError(Exception ex, Object context = null)
         {
@@ -106,6 +106,7 @@ namespace OVERLIMIT.Utility.Logging
 #endif
         }
 #if UNITY_EDITOR
+        //Clears the Unity Editor console programmatically using reflection.
         [Conditional("UNITY_EDITOR")]
         public static void ClearConsole()
         {

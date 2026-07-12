@@ -1,9 +1,9 @@
-// Логирование по трем уровням: warning, error, success. Различие по цветам
-
 namespace OVERLIMIT.Utility.Logging
 {
+    /// <summary>
+    /// Configuration for logging levels, color codes, and console prefixes.
+    /// </summary>
     public static class LogConfig
-    // Задаем префиксы и цвета для логов
     {
         public const string ColorSuccess = "#77ffaa";
         public const string ColorWarning = "#ffff00";
