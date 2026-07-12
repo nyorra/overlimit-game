@@ -3,7 +3,7 @@ using UnityEngine;
 namespace OVERLIMIT.Core.Config
 {
     /// <summary>
-    /// Класс для неизменяемый параметров
+    /// Global environment parameters, such as gravity.
     /// </summary>
     public class StaticParameters : MonoBehaviour { }
 }

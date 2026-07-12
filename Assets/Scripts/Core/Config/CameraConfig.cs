@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace OVERLIMIT.Core.Config
 {
+    /// <summary>
+    /// Defaul player camera parameters.
+    /// </summary>
     [CreateAssetMenu(fileName = "NewCameraConfig", menuName = "OVERLIMIT/Camera Config")]
     public class CameraConfig : ScriptableObject
     {
