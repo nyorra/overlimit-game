@@ -8,14 +8,15 @@ using UnityEngine.SceneManagement;
 namespace OVERLIMIT.Menu
 {
     /// <summary>
-    /// Простой загрузчик сцен для главного меню.
-    /// Используется для быстрых переходов
+    /// Lightweight scene loader for the main menu system.
+    /// Utilized for immediate screen-to-screen routing and transitions.
     /// </summary>
     public class MenuLoader : MonoBehaviour
     {
-        // Защита от "двойного клика": чтобы не запускать загрузку несколько раз подряд
+        // Double-click mitigation flag to prevent duplicate loading dispatch requests.
         private bool _isLoading = false;
 
+        /// Triggers the asynchronous scene transition pipeline.
         public void LoadScene(SceneType scene)
         {
             if (_isLoading)
@@ -30,7 +31,7 @@ namespace OVERLIMIT.Menu
 
             OverLogger.LogSuccess(SelfMainMenuMsg.LoadStarted(sceneName), this);
 
-            // Запускаем асинхронную загрузку Unity
+            // Dispatches immediate asynchronous level loading to Unity
             AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
 
             if (op == null)
@@ -40,7 +41,7 @@ namespace OVERLIMIT.Menu
                 yield break;
             }
 
-            // Ждем, пока сцена полностью прогрузится - в отличие от LoadingProcessor идем до конца
+            // Stalls execution until the scene is fully finalized and active (unlike LoadingProcessor, this runs to absolute completion)
             while (!op.isDone)
             {
                 yield return null;

@@ -7,18 +7,18 @@ namespace OVERLIMIT.Features.City.Camera
     public class CameraController : MonoBehaviour
     {
         /// <summary>
-        /// Контроллер для камеры
+        /// Manages camera movement, smoothly tracking the vehicle from behind based on configuration parameters.
         /// </summary>
-        [Header("Ссылки")]
+        [Header("Camera settings")]
         [SerializeField]
-        private CameraConfig cameraConfig; // Ссылка на файл настроек
+        private CameraConfig cameraConfig; // Configuration asset for distance and offset settings.
 
         [SerializeField]
-        private Transform cameraTarget; // ссылка для передачи объекта привязки камеры
+        private Transform cameraTarget; // The target vehicle or object to follow.
 
         void Start()
         {
-            // Проверяем на null
+            // Dependency validation chain.
             if (
                 this.BeginValidation()
                     .Require(cameraConfig, nameof(cameraConfig))
@@ -30,7 +30,8 @@ namespace OVERLIMIT.Features.City.Camera
 
         private void LateUpdate()
         {
-            //.position вектор x,y,z. .forward определяет взгляд машины по x y z. в результате камера всега в жопе
+            // Calculates the tracking point using the target's position, inverse forward direction (distance), and up vector (height).
+            // This guarantees the camera always frames the vehicle perfectly from behind.
             Vector3 targetPosition =
                 cameraTarget.position
                 - (cameraTarget.forward * cameraConfig.indent)

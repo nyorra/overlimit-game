@@ -7,20 +7,21 @@ using UnityEngine.UI;
 namespace OVERLIMIT.Features.MainMenu.Garage
 {
     /// <summary>
-    /// Проверка модулей, инит кнопок вызов селектора - выбор машины
+    /// Handles the garage module infrastructure, binds interaction controls,
+    /// and dispatches directional index shifting to the vehicle selector system.
     /// </summary>
     public class GarageController : MonoBehaviour
     {
         public GarageSelector selector;
         public GarageView view;
 
-        [Header("Controls")]
+        [Header("Interaction Controls")]
         public Button nextButton;
         public Button prevButton;
 
-        void Start()
+        private void Start()
         {
-            // базовая проверка модулей
+            // Validates core garage sub-modules, button bindings, and vehicle registry allocations.
             if (
                 this.BeginValidation()
                     .Require(selector, nameof(selector))
@@ -39,6 +40,7 @@ namespace OVERLIMIT.Features.MainMenu.Garage
             )
                 return;
 
+            // Bind carousel index shifting triggers
             nextButton.onClick.AddListener(() => selector.SwitchCar(1));
             prevButton.onClick.AddListener(() => selector.SwitchCar(-1));
 

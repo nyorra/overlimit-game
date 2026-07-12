@@ -8,17 +8,17 @@ using UnityEngine.SceneManagement;
 namespace OVERLIMIT.Features.Loading
 {
     /// <summary>
-    /// Техническая часть загрузки
-    /// Незаметно подгружает файлы сцены в память
+    /// Core loading processor.
+    /// Handles asynchronous scene asset streaming and background caching into memory.
     /// </summary>
     public class LoadingProcessor
     {
-        // Связь с процессом загрузки Unity (нужна для отслеживания процентов)
+        // Reference to the Unity async task, utilized by the controller layer to poll progress updates.
         public AsyncOperation AsyncOperation { get; private set; }
 
         public IEnumerator LoadSceneRoutine(SceneType scene)
         {
-            // Берем имя из списка сцен и просим Unity начать загрузку
+            // Converts the enum to its exact string representation and dispatches the async load request to Unity.
             string sceneName = scene.ToString();
             AsyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
@@ -28,10 +28,10 @@ namespace OVERLIMIT.Features.Loading
                 yield break;
             }
 
-            // Запрещаем игре сразу переключаться, пока мы не разрешим (через кнопку)
+            // Holds scene transition until explicit permission is given (e.g., via user input trigger).
             AsyncOperation.allowSceneActivation = false;
             OverLogger.LogSuccess(SelfLoadingMsg.BackgroundLoading(sceneName), null);
-            // Ждем, пока всё прогрузится в память (0.9 — это максимум для этого режима)
+            // Stalls execution until the scene assets are fully buffered into RAM (0.9f is the maximum value before activation).
             while (AsyncOperation.progress < 0.9f)
             {
                 yield return null;
@@ -42,7 +42,7 @@ namespace OVERLIMIT.Features.Loading
 
         public void ActivateScene()
         {
-            // Разрешаем сменить сцену
+            // Releases the scene hold, allowing Unity to instantly switch to the freshly cached level.
             if (AsyncOperation != null)
             {
                 AsyncOperation.allowSceneActivation = true;

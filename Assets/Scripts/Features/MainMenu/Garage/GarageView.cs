@@ -5,8 +5,12 @@ using UnityEngine;
 
 namespace OVERLIMIT.Features.MainMenu.Garage
 {
+    /// <summary>
+    /// Handles the visual representation of the garage UI, observing selection updates.
+    /// </summary>
     public class GarageView : MonoBehaviour
     {
+        [Header("UI Components")]
         public TMP_Text SelectedCarText;
 
         private void OnEnable()
@@ -19,6 +23,7 @@ namespace OVERLIMIT.Features.MainMenu.Garage
             GarageSelector.OnCarChanged -= UpdateUI;
         }
 
+        /// Refreshes the on-screen text components with the newly selected vehicle metadata.
         public void UpdateUI(CarData car)
         {
             SelectedCarText.text = car.CarName;

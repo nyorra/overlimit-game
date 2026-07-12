@@ -9,15 +9,14 @@ using UnityEngine.InputSystem;
 namespace OVERLIMIT.Features.Loading
 {
     /// <summary>
-    /// Управляет жизненным циклом экрана загрузки. координирует работу процессора загрузки,
-    /// обновление интерфейса и ожидание ввода пользователя.
+    /// Manages the loading screen lifecycle, coordinating the loading processor,
+    /// user interface updates, and user input detection.
     /// </summary>
     public class LoadingController : MonoBehaviour
     {
-        // На какую сцену переключимся после user input
+        // The destination scene to activate after receiving user input.
         public SceneType nextScene;
 
-        // Ссылки на UI и загрузку сцены
         [Header("References")]
         [SerializeField]
         private LoadingView ui;
@@ -25,7 +24,7 @@ namespace OVERLIMIT.Features.Loading
 
         void Start()
         {
-            // Валидируем весь модуль LOADING разом в одном месте
+            // Validates the entire LOADING module dependencies at once.
             if (
                 this.BeginValidation()
                     .Require(ui, nameof(ui))
@@ -45,13 +44,13 @@ namespace OVERLIMIT.Features.Loading
 
         private IEnumerator MasterRoutine()
         {
-            // Запускаем загрузку
+            // Executes the background loading task.
             yield return StartCoroutine(LoadingSequence());
 
-            // Сцена готова
+            // Scene background loading is complete.
             ui.ShowReadyState();
 
-            // Ждем ввод
+            // Halts execution until any valid user interaction is detected.
             yield return new WaitUntil(() =>
                 (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
                 || (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
@@ -63,11 +62,11 @@ namespace OVERLIMIT.Features.Loading
 
         private IEnumerator LoadingSequence()
         {
-            // Запускаем корутину в процессоре
+            // Dispatches the async scene loading routine to the processor.
             IEnumerator loadTask = _processor.LoadSceneRoutine(nextScene);
             StartCoroutine(loadTask);
 
-            // Пока процессор делает работу,  обновляем UI
+            // Pumps the asynchronous progress statistics directly into the view layer.
             while (_processor.AsyncOperation == null || _processor.AsyncOperation.progress < 0.9f)
             {
                 if (_processor.AsyncOperation != null)
@@ -77,7 +76,7 @@ namespace OVERLIMIT.Features.Loading
                 yield return null;
             }
 
-            ui.UpdateProgress(0.9f); // Добиваем до 100% визуально
+            ui.UpdateProgress(0.9f); // Artificially fills the bar to 100% since 0.9f means fully loaded but unactivated.
         }
     }
 }

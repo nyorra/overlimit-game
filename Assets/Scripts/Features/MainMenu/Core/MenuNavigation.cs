@@ -6,23 +6,25 @@ using UnityEngine;
 namespace OVERLIMIT.Menu
 {
     /// <summary>
-    /// Управляет переключением окон в главном меню (Главная, Гараж, Настройки, Авторы).
+    /// Manages window routing and visibility transitions within the main menu system
+    /// (e.g., Main Screen, Garage, Settings, and Credits).
     /// </summary>
     public class MenuNavigation : MonoBehaviour
     {
-        [Header("Panels")]
+        [Header("UI Panels")]
         public RectTransform mainScreenPanel;
         public RectTransform garageScreenPanel;
         public RectTransform settingsScreenPanel;
         public RectTransform creditsScreenPanel;
 
-        // Список для удобного перебора всех панелей разом
+        // Internal collection used for collective batch operations on all menu panels.
         private List<RectTransform> _allPanels;
 
-        void Awake()
+        private void Awake()
         {
             OverLogger.ClearConsole();
-            // Складываем все панели едино
+
+            // Consolidates all screen references into a unified collection
             _allPanels = new List<RectTransform>
             {
                 mainScreenPanel,
@@ -32,9 +34,10 @@ namespace OVERLIMIT.Menu
             };
         }
 
+        /// Activates the specified UI panel while programmatically filtering and hiding all others.
         public void ShowPanel(RectTransform targetPanel)
         {
-            // Проходим по всем панелям: нужную включаем, остальные — выключаем
+            // Iterates through the entire registry: activates the matching panel and disables the rest
             foreach (var panel in _allPanels)
             {
                 if (panel != null)
@@ -46,7 +49,7 @@ namespace OVERLIMIT.Menu
             OverLogger.LogSuccess(SelfMainMenuMsg.PanelOpened(targetPanel.name), this);
         }
 
-        // Быстрый метод для возврата на главный экран
+        /// Convenience shortcut to immediately restore the menu system to its baseline main screen state.
         public void ShowMain() => ShowPanel(mainScreenPanel);
     }
 }
