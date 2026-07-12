@@ -11,6 +11,7 @@ namespace OVERLIMIT.Features.MainMenu.Garage
         [Header("Model")]
         public string CarName;
         public GameObject CarPrefab;
+        public GameObject WheelPrefab;
 
         [Header("Physics")]
         public float MaxSpeed;
