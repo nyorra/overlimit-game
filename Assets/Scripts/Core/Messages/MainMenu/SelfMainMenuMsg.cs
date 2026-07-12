@@ -1,8 +1,5 @@
 namespace OVERLIMIT.Core.Messages.MainMenu
 {
-    /// <summary>
-    /// Сообщения главного меню
-    /// </summary>
     public static class SelfMainMenuMsg
     {
         // главное меню

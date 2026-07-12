@@ -1,8 +1,5 @@
 namespace OVERLIMIT.Core.Messages.City
 {
-    /// <summary>
-    /// Сообщения контроллера машин
-    /// </summary>
     public static class CarMsg
     {
         public static string MovingByY = "Движение по оси Z: {_throttleInput}";

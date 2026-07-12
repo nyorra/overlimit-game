@@ -4,13 +4,10 @@ namespace OVERLIMIT.Core
 {
     public enum MachineState
     {
-        Idle, // Покой
-        Moving, // Движение по земле
-        Flying, // В полете
+        Idle,
+        Moving,
+        Flying,
     }
 
-    /// <summary>
-    /// Класс для отслеживания игровых состояний
-    /// </summary>
     public class GameState : MonoBehaviour { }
 }

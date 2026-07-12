@@ -1,8 +1,5 @@
 namespace OVERLIMIT.Core.Messages.MainMenu
 {
-    /// <summary>
-    /// Сообщения гаража
-    /// </summary
     public static class GarageMsg
     {
         public static string Switched(string car) => $"Выбранная машина изменена на: {car}";
